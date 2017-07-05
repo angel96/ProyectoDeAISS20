@@ -1,6 +1,7 @@
 package aiss.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,7 +42,6 @@ public class SearchController extends HttpServlet {
 		YoutubeResource yt = new YoutubeResource();
 		SearchTMDB searchtmdb = tmdb.getMoviesInfo(querySearch);
 		Youtube searchyt = yt.getIdFromQuery(querySearch);
-
 
 		if (searchtmdb != null && searchyt != null) {
 			rd = request.getRequestDispatcher("/success.jsp");

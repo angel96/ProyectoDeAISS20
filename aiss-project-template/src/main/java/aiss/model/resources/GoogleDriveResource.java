@@ -31,38 +31,7 @@ public class GoogleDriveResource {
 	 * 
 	 * @return Files
 	 */
-	public Files getFiles() {
-		ClientResource cr = null;
-		Files files = null;
-		try {
-			cr = new ClientResource(uri + "?access_token=" + access_token);
-			String result = cr.get(String.class);
-			files = cr.get(Files.class);
-
-		} catch (ResourceException re) {
-			log.warning("Error when retrieving all files: " + cr.getResponse().getStatus());
-		}
-
-		return files;
-
-	}
-
-	public FileItem getFile(String id) {
-
-		ClientResource cr = null;
-		FileItem file = null;
-		try {
-			cr = new ClientResource(uri + "/" + id + "?access_token=" + access_token);
-			file = cr.get(FileItem.class);
-
-		} catch (ResourceException re) {
-			log.warning("Error when retrieving file: " + cr.getResponse().getStatus());
-		}
-
-		return file;
-
-	}
-
+	
 	public String insertFile(FileItem file, String content) {
 
 		ClientResource cr = null;
@@ -81,74 +50,5 @@ public class GoogleDriveResource {
 		return newId;
 	}
 
-	public boolean updateFile(FileItem file) {
-
-		ClientResource cr = null;
-		boolean result = true;
-		try {
-			cr = new ClientResource(uri + "/" + file.getId() + "?access_token=" + access_token);
-			cr.put(file);
-		} catch (ResourceException re) {
-			log.warning("Error when updating file: " + cr.getResponse().getStatus());
-			result = false;
-		}
-		return result;
-	}
-
-	public boolean deleteFile(String id) {
-
-		ClientResource cr = null;
-		boolean result = true;
-		try {
-			cr = new ClientResource(uri + "/" + id + "?access_token=" + access_token);
-			cr.delete();
-		} catch (ResourceException re) {
-			log.warning("Error when deleting file: " + cr.getResponse().getStatus());
-			result = false;
-		}
-		return result;
-
-	}
-
-	public String getFileContent(FileItem item){
-		String result=null;
-		String contentURL=item.getDownloadUrl();
-		try{
-			ClientResource cr = new ClientResource(contentURL);			
-			/*Map<String, Object> reqAttribs = cr.getRequestAttributes(); 
-	        Series<Header> headers = (Series<Header>)reqAttribs.get("org.restlet.http.headers"); 
-	        if (headers == null) { 
-	            headers = new Series<Header>(Header.class); 
-	            reqAttribs.put("org.restlet.http.headers", headers); 
-	        } 
-	        headers.add(new Header("Authorization:", "Bearer "+access_token));*/
-			ChallengeResponse chr = new ChallengeResponse(
-					ChallengeScheme.HTTP_OAUTH_BEARER);
-			chr.setRawValue(access_token);
-			cr.setChallengeResponse(chr);
-			
-			result=cr.get(String.class);
-		} catch (ResourceException re) {
-			log.warning("Error when obtaining content of file: " + item.getId());			
-		}
-		return result;
-	}
 	
-	public boolean updateFileContent(String id,String content){
-		ClientResource cr=new ClientResource(uri_upload+"/"+id+ "?uploadType=media");
-		try{
-			ChallengeResponse chr = new ChallengeResponse(
-					ChallengeScheme.HTTP_OAUTH_BEARER);
-			chr.setRawValue(access_token);
-			cr.setChallengeResponse(chr);
-			StringRepresentation rep=new StringRepresentation(content,MediaType.TEXT_PLAIN);
-			cr.put(rep);
-		} catch (ResourceException re) {
-			log.warning("Error when updating the content of file: " + id);
-			log.warning(re.getMessage());
-			return false;
-		}
-		return true;
-	}
-
 }
