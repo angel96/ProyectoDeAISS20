@@ -7,7 +7,9 @@
 
 <body>
 	<h1>SpotyGo</h1>
-	<h2><p class="message">${message}</p></h2>
+	<h2>
+		<p class="message">${message}</p>
+	</h2>
 	<table>
 		<tr>
 			<td colspan="2" style="font-weight: bold;">Available Servlets:</td>
@@ -15,10 +17,14 @@
 		<tr>
 			<div id="search">
 				<form id="formSearch" action="searchcontroller" method="post">
-					<input type="text" name="query" required /> 
-					<input type="submit" name="searchBtn" title="search" value="search">
+					<input type="text" name="query" required /> <input type="submit"
+						name="searchBtn" title="search" value="search">
 				</form>
 			</div>
+		</tr>
+		<tr>
+			<td><a href="/googleDriveListing">Listado de ficheros de
+					Google Drive</a></td>
 		</tr>
 		<tr>
 			<td><a href="/developers">Desarrolladores</a></td>

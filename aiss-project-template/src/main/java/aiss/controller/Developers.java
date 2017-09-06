@@ -21,7 +21,7 @@ public class Developers extends HttpServlet {
 		resp.getWriter().println("<html>"
 				+ "<head><title>Desarrolladores</title></head>"
 				+ "<body> <h1>Desarrolladores</h1>"
-				+ "<table> <p>Reyes Cabello Holgado</p> <p>Vinnicios Thyago Dias Taufner</p> <p>Francisco Javier Sánchez Gata</p> <p>Ángel Delgado Luna</p> </table>"
+				+ "<table> <p>Reyes Cabello Holgado</p> <p>Ángel Delgado Luna</p> </table>"
 				+ "<p><a href = '/index.jsp'>Volver al inicio</a></p></body>"
 				+ "</html>");
 	}

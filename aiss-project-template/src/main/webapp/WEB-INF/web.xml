@@ -24,6 +24,34 @@
 		<servlet-name>SearchController</servlet-name>
 		<url-pattern>/searchcontroller</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GoogleDriveListingServlet</servlet-name>
+		<servlet-class>aiss.controller.DriveFileListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GoogleDriveListingServlet</servlet-name>
+		<url-pattern>/googleDriveListing</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DriveFileDelete</servlet-name>
+		<servlet-class>aiss.controller.DriveFileDelete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DriveFileDelete</servlet-name>
+		<url-pattern>/GoogleDriveFileDelete</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DriveFileUpdate</servlet-name>
+		<servlet-class>aiss.controller.DriveFileUpdate</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DriveFileUpdate</servlet-name>
+		<url-pattern>/GoogleDriveFileUpdate</url-pattern>
+	</servlet-mapping>
+
 	<!-- Servlet de Google -->
 	<servlet>
 		<servlet-name>GoogleDriveFileNew</servlet-name>

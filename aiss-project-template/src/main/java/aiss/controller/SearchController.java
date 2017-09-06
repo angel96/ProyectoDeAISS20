@@ -40,9 +40,12 @@ public class SearchController extends HttpServlet {
 		log.log(Level.FINE, "Searching for TMDB albums of " + querySearch);
 		TMDBResource tmdb = new TMDBResource();
 		YoutubeResource yt = new YoutubeResource();
-		SearchTMDB searchtmdb = tmdb.getMoviesInfo(querySearch);
-		Youtube searchyt = yt.getIdFromQuery(querySearch);
-
+		SearchTMDB searchtmdb = null;
+		Youtube searchyt = null;
+		if(querySearch != null || querySearch != "" || querySearch != " " || querySearch != "."){
+			searchtmdb = tmdb.getMoviesInfo(querySearch);
+			searchyt = yt.getIdFromQuery(querySearch);	
+		}
 		if (searchtmdb != null && searchyt != null) {
 			rd = request.getRequestDispatcher("/success.jsp");
 			request.setAttribute("results", searchtmdb.getResults());
