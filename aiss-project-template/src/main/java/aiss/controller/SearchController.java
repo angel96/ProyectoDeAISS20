@@ -42,9 +42,9 @@ public class SearchController extends HttpServlet {
 		YoutubeResource yt = new YoutubeResource();
 		SearchTMDB searchtmdb = null;
 		Youtube searchyt = null;
-		if(querySearch != null || querySearch != "" || querySearch != " " || querySearch != "."){
+		if (querySearch != null || querySearch != "" || querySearch != " " || querySearch != ".") {
 			searchtmdb = tmdb.getMoviesInfo(querySearch);
-			searchyt = yt.getIdFromQuery(querySearch);	
+			searchyt = yt.getIdFromQuery(querySearch);
 		}
 		if (searchtmdb != null && searchyt != null) {
 			rd = request.getRequestDispatcher("/success.jsp");

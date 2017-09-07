@@ -1,6 +1,7 @@
 package aiss.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import aiss.model.repository.YoutubeRepository;
+import aiss.model.resources.YoutubeResource;
 import aiss.model.youtube.Youtube;
 
 public class YoutubeRepositoryTest {
