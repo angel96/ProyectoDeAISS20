@@ -1,7 +1,6 @@
 package aiss.model.repository;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import aiss.model.resources.TMDBResource;
@@ -10,8 +9,6 @@ import aiss.model.tmdbsearch.SearchTMDB;
 public class TMDBRepository {
 
 	// GET TMDB
-
-	private SearchTMDB search;
 	private static TMDBRepository instance = null;
 
 	public static TMDBRepository getInstance() {

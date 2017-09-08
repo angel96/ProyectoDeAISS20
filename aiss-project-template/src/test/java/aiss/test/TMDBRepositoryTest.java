@@ -38,6 +38,6 @@ public class TMDBRepositoryTest {
 
 	@Test
 	public void getSearchResultsMayorThan() throws UnsupportedEncodingException {
-		assertTrue("Comprobar que se obtienen los objetos", ls.get(i).getResults().size() >= 1);
+		assertTrue("Comprobar que se obtienen los objetos", ls.get(i).getResults().size() > 1);
 	}
 }

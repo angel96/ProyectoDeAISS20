@@ -29,6 +29,15 @@
 		<tr>
 			<td><a href="/developers">Desarrolladores</a></td>
 		</tr>
+		<tr>
+			<td><a href="api/tmdb/all">TMDB - API</a></td>
+		</tr>
+		<tr>
+			<td><a href="api/youtube/all">Youtube - API</a></td>
+		</tr>
+		<tr>
+			<td><a href="api/drive/all">GoogleDrive - API - Ficheros</a></td>
+		</tr>
 	</table>
 </body>
 </html>
