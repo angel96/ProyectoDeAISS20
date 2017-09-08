@@ -1,7 +1,9 @@
 package aiss.controller;
 
 import java.io.IOException;
-import java.util.logging.Level;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -30,28 +32,30 @@ public class YoutubeSearchController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*a.split("%a%")*/
-		String a = request.getParameter("array");
-		String[] querySearch= {"Harry potter y la orden del fenix"};
-		RequestDispatcher rd = null; //manda a la vista
-		YoutubeResource yt = new YoutubeResource(); //conseguir objeto youtube
-		Youtube[] searchyt = null;
-		int i;
-		for(i=0; i<querySearch.length;i++) {
-			if (querySearch[i] != null || querySearch[i] != "" || querySearch[i] != " " || querySearch[i] != ".") {
-				searchyt[i] = yt.getIdFromQuery(querySearch[i]);
-			}
-			if (searchyt[i] != null) {
-				rd = request.getRequestDispatcher("/YoutubeResults.jsp");
-				request.setAttribute("videos", searchyt[i].getItems());
-			} else {
-				continue;
-				/*
-				log.log(Level.SEVERE, "Youtube object: " + searchyt);
-				rd = request.getRequestDispatcher("/error.jsp");
-				*/
+		/* a.split("%a%") */
+		// String a = request.getParameter("array");
+		List<String> querySearch = new ArrayList<>();
+		querySearch.add("Harry potter y la orden del fenix");
+		querySearch.add("Taylor Swift");
+		RequestDispatcher rd = null; // manda a la vista
+		YoutubeResource yt = new YoutubeResource(); // conseguir objeto youtube
+		List<Youtube> ls = new ArrayList<Youtube>();
+		List<String> ids = new ArrayList<String>();
+
+		for(String s: querySearch){
+			if (s != null || s != "" || s != " " || s != ".") {
+				ls.add(yt.getIdFromQuery(s));
 			}
 		}
+		
+		for(Youtube t: ls){
+			if (t != null) {
+				String id = t.getItems().get(0).getId().getVideoId();
+				ids.add(id);
+			}
+		}
+		rd = request.getRequestDispatcher("/YoutubeResults.jsp");
+		request.setAttribute("videos", ids);
 		rd.forward(request, response);
 	}
 

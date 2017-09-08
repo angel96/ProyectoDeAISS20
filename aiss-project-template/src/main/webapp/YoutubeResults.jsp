@@ -20,7 +20,7 @@
 			<table>
 				<tr>
 					<td><iframe width="260" height="115"
-							src="https://www.youtube.com/embed/${x.id.videoId}/>"
+							src="https://www.youtube.com/embed/${x	}/>"
 							frameborder="0" allowfullscreen></iframe></td>
 				</tr>
 			</table>
