@@ -16,13 +16,23 @@
 	</welcome-file-list>
 	<servlet>
 		<description></description>
-		<display-name>SearchController</display-name>
-		<servlet-name>SearchController</servlet-name>
-		<servlet-class>aiss.controller.SearchController</servlet-class>
+		<display-name>TMDBSearchController</display-name>
+		<servlet-name>TMDBSearchController</servlet-name>
+		<servlet-class>aiss.controller.TMDBSearchController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>SearchController</servlet-name>
-		<url-pattern>/searchcontroller</url-pattern>
+		<servlet-name>TMDBSearchController</servlet-name>
+		<url-pattern>/tmdbsearchcontroller</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<description></description>
+		<display-name>YoutubeSearchController</display-name>
+		<servlet-name>YoutubeSearchController</servlet-name>
+		<servlet-class>aiss.controller.YoutubeSearchController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>YoutubeSearchController</servlet-name>
+		<url-pattern>/youtubesearchcontroller</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -106,7 +116,7 @@
 		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>aiss.api.Spotygo</param-value>
+			<param-value>aiss.api.SpotyGo</param-value>
 		</init-param>
 	</servlet>
 

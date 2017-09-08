@@ -25,7 +25,7 @@
 
 				File name: <input type="text" name="title"><br>
 				Content:
-				<textarea name="content">${content}</textarea>
+				<textarea name="content"></textarea>
 				<br>
 				<div class="bottom_links">
 					<button type="submit" class="button">Submit</button>

@@ -10,12 +10,12 @@ import aiss.api.resources.GoogleDriveSingle;
 import aiss.api.resources.TMDBResourceSingle;
 import aiss.api.resources.YoutubeSingle;
 
-public class Spotygo extends Application{
+public class SpotyGo extends Application{
 	
 	private Set<Object> singletons = new HashSet<Object>();
 	private Set<Class<?>> classes = new HashSet<Class<?>>();
 	
-	public Spotygo(){
+	public SpotyGo(){
 		singletons.add(TMDBResourceSingle.getInstance());
 		singletons.add(YoutubeSingle.getInstance());
 		singletons.add(GoogleDriveSingle.getInstance());

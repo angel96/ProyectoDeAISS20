@@ -7,35 +7,25 @@ import aiss.model.tmdbsearch.Result;
 public class User{
 
 	  /*
-	  * La clase Usuario contiene una lista con las películas seleccionadas
-	  * y otra lista con los videos seleccionados
-	  *
-	  *Las películas seleccionadas son de tipo Result
+	  * La clase Usuario contiene una lista con los videos seleccionados
+
 	  *Los videos se muestran a través de su id pero se postean a través
-	  * de su url, que es: "https://www.youtube.com/embed/${x.id.videoId}"
-	  * Es decir, un String, pero necesito el id de cada video
+	  * de su url, que es: "https://www.youtube.com/watch?v=${x.id.videoId},
 	  *
 	  *
 	  */
-
-	private List<Result> TMDBResults;
-
 	private List<String> YoutubeResults;
 
 	public User(){
 	}
 
-	public User(List<Result> TMDBResults, List<String> YoutubeResults){
-	  this.TMDBResults = TMDBResults;
+	public User(List<String> YoutubeResults){
 	  this.YoutubeResults = YoutubeResults;
 	}
 
-	public List<Result> getTMBDResults(){
-	  return TMDBResults;
-	}
 
-	public void setTMDBResults(List<Result> TMDBResults){
-	  this.TMDBResults = TMDBResults;
+	public void setYoutubeResults(List<String> YoutubeResults){
+	  this.YoutubeResults = YoutubeResults;
 	}
 
 	public List<String> getYoutubeResults(){

@@ -27,16 +27,38 @@
 		</div>
 <!--RESULTADOS DE TMDB: SE MUESTRAN LOS SELECCIONADOS-->
 		<div class="seleccionados">
-			<label>Seleccionados</label> <select id="select2" size="3"
-				tabindex="1"></select> <a href="#" id="remove">Quitar seleccion</a>
+			<label>Seleccionados</label>
+			<select id="select2" name="select2" size="3" tabindex="1"></select> 
+			<a href="#" id="remove">Quitar seleccion</a>
+			<form id="formSearch" action="/youtubesearchcontroller" method="post">
+			<input type="text" id="array" name="array" value="">
+			<input type="submit" id="searchBtn" name="searchBtn" title="search" value="Buscar" onclick="">
+			</form>
+			<button id="mostrar">Confirmar</button>
 		</div>
 		<script type="text/javascript">
 			$("#add").click(function() {
 				$("#select1 option:selected").remove().appendTo($("#select2"));
+				$("#mostrar").show();
+				$("#searchBtn").hide();
 			});
 			$("#remove").click(function() {
 				$("#select2 option:selected").remove().appendTo($("#select1"));
+				$("#mostrar").show();
+				$("#searchBtn").hide();
 			});
+			$("#searchBtn").hide();
+			$("#mostrar").click(function(){
+				$("#array").val("");
+				$("#select2 option").each(function(){
+				$("#array").val($("#array").val()+($(this).attr('value'))+'%a%');
+			  });
+				$("#searchBtn").show();
+				$("#mostrar").hide();
+				})
+			
+			
+			  
 		</script>
 	</fieldset>
 </body>

@@ -16,7 +16,7 @@
 		</tr>
 		<tr>
 			<div id="search">
-				<form id="formSearch" action="searchcontroller" method="post">
+				<form id="formSearch" action="tmdbsearchcontroller" method="post">
 					<input type="text" name="query" required /> <input type="submit"
 						name="searchBtn" title="search" value="search">
 				</form>

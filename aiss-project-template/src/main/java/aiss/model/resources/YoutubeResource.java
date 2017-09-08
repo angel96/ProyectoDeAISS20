@@ -17,7 +17,7 @@ public class YoutubeResource {
 		// + keyword + "&key=YOUR_YOUTUBE_API_KEY
 		// TODO: REALIZAR METODO
 		String URI = 
-				"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=rating&q="+query
+				"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=2&order=rating&q="+query
 				+ "&key=" + API_KEY;
 		
 		Youtube res = null;

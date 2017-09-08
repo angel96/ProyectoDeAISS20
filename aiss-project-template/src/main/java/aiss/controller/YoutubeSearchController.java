@@ -30,20 +30,27 @@ public class YoutubeSearchController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		String querySearch = request.getParameter("query");
-		RequestDispatcher rd = null;
-		YoutubeResource yt = new YoutubeResource();
-		Youtube searchyt = null;
-		if (querySearch != null || querySearch != "" || querySearch != " " || querySearch != ".") {
-			searchyt = yt.getIdFromQuery(querySearch);
-		}
-		if (searchyt != null) {
-			rd = request.getRequestDispatcher("/YoutubeResults.jsp");
-			request.setAttribute("videos", searchyt.getItems());
-		} else {
-			log.log(Level.SEVERE, "Youtube object: " + searchyt);
-			rd = request.getRequestDispatcher("/error.jsp");
+		/*a.split("%a%")*/
+		String a = request.getParameter("array");
+		String[] querySearch= {"Harry potter y la orden del fenix"};
+		RequestDispatcher rd = null; //manda a la vista
+		YoutubeResource yt = new YoutubeResource(); //conseguir objeto youtube
+		Youtube[] searchyt = null;
+		int i;
+		for(i=0; i<querySearch.length;i++) {
+			if (querySearch[i] != null || querySearch[i] != "" || querySearch[i] != " " || querySearch[i] != ".") {
+				searchyt[i] = yt.getIdFromQuery(querySearch[i]);
+			}
+			if (searchyt[i] != null) {
+				rd = request.getRequestDispatcher("/YoutubeResults.jsp");
+				request.setAttribute("videos", searchyt[i].getItems());
+			} else {
+				continue;
+				/*
+				log.log(Level.SEVERE, "Youtube object: " + searchyt);
+				rd = request.getRequestDispatcher("/error.jsp");
+				*/
+			}
 		}
 		rd.forward(request, response);
 	}
