@@ -32,11 +32,8 @@ public class YoutubeSearchController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/* a.split("%a%") */
-		// String a = request.getParameter("array");
-		List<String> querySearch = new ArrayList<>();
-		querySearch.add("Harry potter y la orden del fenix");
-		querySearch.add("Taylor Swift");
+		
+		String[] querySearch = request.getParameter("array").split("#");
 		RequestDispatcher rd = null; // manda a la vista
 		YoutubeResource yt = new YoutubeResource(); // conseguir objeto youtube
 		List<Youtube> ls = new ArrayList<Youtube>();
