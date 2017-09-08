@@ -1,7 +1,6 @@
 package aiss.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,21 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.resources.TMDBResource;
-import aiss.model.resources.YoutubeResource;
 import aiss.model.tmdbsearch.SearchTMDB;
-import aiss.model.youtube.Youtube;
 
 /**
- * Servlet implementation class SearchController
+ * Servlet implementation class TMDBSearchController
  */
-public class SearchController extends HttpServlet {
+public class TMDBSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(SearchController.class.getName());
+	private static final Logger log = Logger.getLogger(TMDBSearchController.class.getName());
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SearchController() {
+	public TMDBSearchController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,20 +36,15 @@ public class SearchController extends HttpServlet {
 		RequestDispatcher rd = null;
 		log.log(Level.FINE, "Searching for TMDB albums of " + querySearch);
 		TMDBResource tmdb = new TMDBResource();
-		YoutubeResource yt = new YoutubeResource();
 		SearchTMDB searchtmdb = null;
-		Youtube searchyt = null;
 		if (querySearch != null || querySearch != "" || querySearch != " " || querySearch != ".") {
 			searchtmdb = tmdb.getMoviesInfo(querySearch);
-			searchyt = yt.getIdFromQuery(querySearch);
 		}
-		if (searchtmdb != null && searchyt != null) {
-			rd = request.getRequestDispatcher("/success.jsp");
+		if (searchtmdb != null) {
+			rd = request.getRequestDispatcher("/TMDBResults.jsp");
 			request.setAttribute("results", searchtmdb.getResults());
-			request.setAttribute("videos", searchyt.getItems());
 		} else {
 			log.log(Level.SEVERE, "TMDB object: " + searchtmdb);
-			log.log(Level.SEVERE, "Youtube object: " + searchyt);
 			rd = request.getRequestDispatcher("/error.jsp");
 		}
 		rd.forward(request, response);
