@@ -51,7 +51,7 @@
 			$("#mostrar").click(function(){
 				$("#array").val("");
 				$("#select2 option").each(function(){
-				$("#array").val($("#array").val()+($(this).attr('value'))+'%a%');
+				$("#array").val($("#array").val()+($(this).attr('value'))+'#');
 			  });
 				$("#searchBtn").show();
 				$("#mostrar").hide();

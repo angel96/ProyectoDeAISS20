@@ -2,7 +2,6 @@ package aiss.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -11,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import aiss.model.resources.YoutubeResource;
 import aiss.model.youtube.Youtube;
@@ -34,6 +34,8 @@ public class YoutubeSearchController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String[] querySearch = request.getParameter("array").split("#");
+		HttpSession session = request.getSession();
+		session.setAttribute("querySearch", querySearch);
 		RequestDispatcher rd = null; // manda a la vista
 		YoutubeResource yt = new YoutubeResource(); // conseguir objeto youtube
 		List<Youtube> ls = new ArrayList<Youtube>();
@@ -53,6 +55,7 @@ public class YoutubeSearchController extends HttpServlet {
 		}
 		rd = request.getRequestDispatcher("/YoutubeResults.jsp");
 		request.setAttribute("videos", ids);
+		
 		rd.forward(request, response);
 	}
 

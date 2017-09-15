@@ -20,7 +20,10 @@
 								value="${file.title}"
 								</c:if>
 								><br>
-			Content: <textarea name="content">${content}</textarea>
+			Content: <textarea name="content"><c:forEach
+					items="${sessionScope.querySearch}" var="x">
+					${x}
+			</c:forEach></textarea>
 			<br>
 			<div class="bottom_links">
 				<button type="submit" class="button">Submit</button>

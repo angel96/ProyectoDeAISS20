@@ -1,6 +1,7 @@
 package aiss.controller;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -8,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import aiss.model.resources.GoogleDriveResource;
 import aiss.model.google.drive.FileItem;
+import aiss.model.resources.GoogleDriveResource;
 
 public class DriveFileNew extends HttpServlet {
 	private static final Logger log = Logger.getLogger(DriveFileNew.class.getName());
@@ -26,7 +27,7 @@ public class DriveFileNew extends HttpServlet {
 				file.setMimeType("text/plain");
 				gdResource.insertFile(file, content);
 				req.setAttribute("message", "File '"+title+"' added to your Drive!");
-				req.getRequestDispatcher("/index.jsp").forward(req,resp);
+				req.getRequestDispatcher("/GoogleDriveFileListing.jsp").forward(req,resp);
 			}
 		}else{
 			log.info("Trying to acces to google drive without an acces token, redirecting to OAuth servlet");
