@@ -7,10 +7,9 @@
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
   <!-- <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>-->
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Busqueda TMDB</title>
+<title>Busqueda Youtube</title>
 </head>
 <body>
-  <!--TODO recorrer todos los elementos seleccionados de la lista de TMBD-->
 	<fieldset id="Youtube">
 		
 			<iframe id="previo" src="https://www.youtube.com/embed/${x}/>" 
@@ -25,17 +24,19 @@
 		</div>
 	</fieldset>
 
-	<!--RESULTADOS DE TMDB: SE MUESTRAN LOS RESULTADOS DE LA BÚSQUEDA-->
 	<fieldset id="TMDB">
-		<div class="seleccionados">
+		
 			<label>Seleccionados</label>
-			<table id="#select2"></table>
+			<table id="seleccionados"></table>
+			<button onclick="table()">Mostrar</button>
+			
+			
 			<form id="formSearch" action="/youtubesearchcontroller" method="post">
 			<input type="text" id="array" name="array" value="">
 			<input type="submit" id="searchBtn" name="searchBtn" title="search" value="Buscar" onclick="">
 			</form>
-			<button id="mostrar">Confirmar</button>
-		</div>
+
+		
 	
 		
 		<script type="text/javascript">
@@ -46,7 +47,7 @@
 		}
 		
 		function add(id){
-			var table = document.getElementById("#select2");
+			var table = document.getElementById("seleccionados");
 			var i = table.rows.length;
 			var row = table.insertRow(i);
 			var c0 = row.insertCell(0);
@@ -58,8 +59,19 @@
 			
 		}
 		function remove(id){
-			document.getElementById("#select2").deleteRow(id);
+			document.getElementById("seleccionados").deleteRow(id);
 		}
+		function table(){
+			var recorrer = document.getElementById("seleccionados");
+			var i;
+			var resultado = "";
+			for(i=0; i<recorrer.rows.length; i++){
+				resultado = resultado + recorrer.rows[i].cells[1].innerHTML + "\t";
+			}
+			alert(resultado);
+		}
+		
+		
 		
 		
 		</script>
