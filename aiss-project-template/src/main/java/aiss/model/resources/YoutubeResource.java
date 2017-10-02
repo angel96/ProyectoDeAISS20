@@ -13,11 +13,11 @@ public class YoutubeResource {
 	}
 
 	public Youtube getIdFromQuery(String query) {
-		// https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=rating&q="
+		// https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q="
 		// + keyword + "&key=YOUR_YOUTUBE_API_KEY
 		// TODO: REALIZAR METODO
 		String URI = 
-				"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=2&order=rating&q="+query
+				"https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoType=movie&maxResults=28&order=relevance&q="+query
 				+ "&key=" + API_KEY;
 		
 		Youtube res = null;

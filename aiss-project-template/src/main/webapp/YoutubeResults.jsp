@@ -69,6 +69,7 @@
 				resultado = resultado + recorrer.rows[i].cells[1].innerHTML + "\t";
 			}
 			alert(resultado);
+			document.getElementById("array").value = resultado;
 		}
 		
 		

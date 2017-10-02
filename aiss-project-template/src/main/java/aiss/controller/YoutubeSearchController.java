@@ -49,8 +49,14 @@ public class YoutubeSearchController extends HttpServlet {
 		
 		for(Youtube t: ls){
 			if (t != null) {
-				String id = t.getItems().get(0).getId().getVideoId();
-				ids.add(id);
+				Integer i;
+				List<String> a = new ArrayList<String>();
+				for (i = 0; i < t.getItems().size(); i++) {
+					String id = t.getItems().get(i).getId().getVideoId();
+					a.add(id);
+				}
+				//String id = t.getItems().get(0).getId().getVideoId();
+				ids.addAll(a);
 			}
 		}
 		rd = request.getRequestDispatcher("/YoutubeResults.jsp");
