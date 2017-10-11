@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
   <!-- <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>-->
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Busqueda Youtube</title>
 </head>
 <body>
@@ -14,13 +14,14 @@
 		
 			<iframe id="previo" src="https://www.youtube.com/embed/${x}/>" 
 			frameborder="0" allowfullscreen></iframe>
-			<button id="add" onclick="add()"> Añadir a seleccionados</button>
+			<button id="add" onclick="add()"> AÃ±adir a seleccionados</button>
 		
 			<div class="seleccionar"> 
 			<c:forEach items="${requestScope.videos}" var="x">
 					<img id="img" src="https://img.youtube.com/vi/${x}/0.jpg" width="260"  
 					onclick="seleccionar('${x}')">
 				</c:forEach>
+			
 		</div>
 	</fieldset>
 
@@ -36,9 +37,6 @@
 			<input type="submit" id="searchBtn" name="searchBtn" title="search" value="Buscar" onclick="">
 			</form>
 
-		
-	
-		
 		<script type="text/javascript">
 		
 		function seleccionar(id){
@@ -72,28 +70,6 @@
 			document.getElementById("array").value = resultado;
 		}
 		
-		
-		
-		
-		</script>
-	
-
-		<script type="text/javascript">
-	
-			$("#remove").click(function() {
-				$("#select2 option:selected").remove().appendTo($("#select1"));
-				$("#mostrar").show();
-				$("#searchBtn").hide();
-			});
-			$("#searchBtn").hide();
-			$("#mostrar").click(function(){
-				$("#array").val("");
-				$("#select2 option").each(function(){
-				$("#array").val($("#array").val()+($(this).attr('value'))+'#');
-			  });
-				$("#searchBtn").show();
-				$("#mostrar").hide();
-				})
 		</script>
 	</fieldset>
 </body>

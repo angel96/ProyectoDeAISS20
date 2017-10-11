@@ -34,7 +34,6 @@
 		<servlet-name>YoutubeSearchController</servlet-name>
 		<url-pattern>/youtubesearchcontroller</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>GoogleDriveListingServlet</servlet-name>
 		<servlet-class>aiss.controller.DriveFileListController</servlet-class>

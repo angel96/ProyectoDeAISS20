@@ -1,9 +1,11 @@
 package aiss.controller;
 
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,8 +34,8 @@ public class YoutubeSearchController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		String[] querySearch = request.getParameter("array").split("#");
+	
 		HttpSession session = request.getSession();
 		session.setAttribute("querySearch", querySearch);
 		RequestDispatcher rd = null; // manda a la vista
@@ -51,11 +53,10 @@ public class YoutubeSearchController extends HttpServlet {
 			if (t != null) {
 				Integer i;
 				List<String> a = new ArrayList<String>();
-				for (i = 0; i < t.getItems().size(); i++) {
+				for (i = 0; i < yt.maxResults(); i++) {
 					String id = t.getItems().get(i).getId().getVideoId();
 					a.add(id);
 				}
-				//String id = t.getItems().get(0).getId().getVideoId();
 				ids.addAll(a);
 			}
 		}
