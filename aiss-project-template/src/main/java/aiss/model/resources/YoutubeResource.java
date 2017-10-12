@@ -14,7 +14,7 @@ public class YoutubeResource {
 	
 	//Modifica el número de resultados en la URI y en el controlador
 		public Integer maxResults() {
-			return 1;
+			return 4;
 		}
 
 	public Youtube getIdFromQuery(String query) {

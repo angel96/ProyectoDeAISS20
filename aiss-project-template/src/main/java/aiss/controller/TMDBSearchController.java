@@ -35,10 +35,16 @@ public class TMDBSearchController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String querySearch = request.getParameter("query");
-		List<String> before = new ArrayList<>();
+		ArrayList<String> before = new ArrayList<>();
+		ArrayList<String> ids = new ArrayList<>();
 		if(!request.getParameter("selected").equals(null)) {
-			String[] beforeS = request.getParameter("selected").split("#");
-			before = Arrays.asList(beforeS);
+			before.addAll(Arrays.asList(request.getParameter("selected").split("#")));
+			before.removeAll(Arrays.asList(null,""));
+		}
+		if(!request.getParameter("ids").equals(null)) {
+			ids.addAll(Arrays.asList(request.getParameter("ids").split("#")));
+			ids.removeAll(Arrays.asList(null,""));
+			
 		}
 		
 
@@ -54,7 +60,10 @@ public class TMDBSearchController extends HttpServlet {
 			request.setAttribute("results", searchtmdb.getResults());
 			if(!before.isEmpty()) {
 			request.setAttribute("before",before);
-			}	
+			}
+			if(!ids.isEmpty()) {
+				request.setAttribute("ids",ids);
+			}
 			
 		} else {
 			log.log(Level.SEVERE, "TMDB object: " + searchtmdb);

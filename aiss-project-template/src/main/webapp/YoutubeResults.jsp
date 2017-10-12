@@ -25,14 +25,35 @@
 		</div>
 	</fieldset>
 
-	<fieldset id="TMDB">
+	<fieldset>
 		
 			<label>Seleccionados</label>
-			<table id="seleccionados"></table>
+			<table id="seleccionados">
+			<c:forEach items="${requestScope.ids}" var="y">
+			<tr>
+			<td><img src='https://img.youtube.com/vi/${y}/0.jpg' width='50'></td>
+			<td>https://www.youtube.com/embed/${y}/</td>
+			<td><button onclick='remove(this)'>x</button></td>
+			<td style="display:none">${y}</td>
+			</tr>	
+			</c:forEach>
+			</table>
 			<button onclick="table()">Mostrar</button>
 			
+			<!-- Volver a TMDBResults -->
+			<form id="return" action="/tmdbsearchcontroller" method="post">
+			<!--Búsqueda realizada desde TMDB-->
+			Búsqueda realizada desde TMDB
+			<input id="selected" name="selected" value="${requestScope.array}">
+			<!--Devuelve las ID de los videos seleccionados-->
+			Devuelve las ID de los videos seleccionados
+			<input id="ids" name="ids" value="<c:forEach items="${requestScope.ids}" var="y">${y}#</c:forEach>">
+			<input type="submit" id="return" name="return" title="return" value="Volver" onclick="">
+			</form>
 			
-			<form id="formSearch" action="/youtubesearchcontroller" method="post">
+			<!--Enviar a Google Drive-->
+			Enviar a Google Drive
+			<form id="formSearch" action="/GoogleDriveFileUpdate" method="post">
 			<input type="text" id="array" name="array" value="">
 			<input type="submit" id="searchBtn" name="searchBtn" title="search" value="Buscar" onclick="">
 			</form>
@@ -51,9 +72,12 @@
 			var c0 = row.insertCell(0);
 			var c1 = row.insertCell(1);
 			var c2 = row.insertCell(2);
+			var c3 = row.insertCell(3);
 			c0.innerHTML = "<img src='https://img.youtube.com/vi/"+id+"/0.jpg' width='50'>";
 			c1.innerHTML = "https://www.youtube.com/embed/"+id+"/";
 			c2.innerHTML = "<button onclick='remove(this)'>x</button>";
+			c3.innerHTML = id;
+			table.rows[i].cells[3].style.display = "none";
 			
 		}
 		function remove(id){
@@ -63,12 +87,15 @@
 			var recorrer = document.getElementById("seleccionados");
 			var i;
 			var resultado = "";
+			var ids = "";
 			for(i=0; i<recorrer.rows.length; i++){
 				resultado = resultado + recorrer.rows[i].cells[1].innerHTML + "\t";
+				ids = ids + recorrer.rows[i].cells[3].innerHTML + "#";
 			}
-			alert(resultado);
 			document.getElementById("array").value = resultado;
+			document.getElementById("ids").value = ids;
 		}
+		
 		
 		</script>
 	</fieldset>

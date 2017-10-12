@@ -13,7 +13,13 @@
   <!--RESULTADOS DE TMDB: SE MUESTRAN LOS RESULTADOS DE LA BÚSQUEDA-->
   <div id="search">
 				<form id="formSearch" action="tmdbsearchcontroller" method="post">
-					<input type="text" name="selected" placeholder="búsquedas anteriores">
+				<!--almacena los id de las películas seleccionadas en YoutubeResults-->
+					Películas seleccionadas en YoutubeResults
+					<input type="text" id="ids" name="ids" value="<c:forEach items="${requestScope.ids}" var="y">${y}#</c:forEach>">
+				<!--almacena las películas seleccionadas anterioremente en TMDBResults-->
+					Películas seleccionadas anterioremente en TMDBResults
+					<input type="text" id="selected" name="selected" value="<c:forEach items="${requestScope.before}" var="y">${y}#</c:forEach>">
+				<!--cuadro de búsqueda -->
 					<input type="text" name="query" placeholder="Buscar películas" required /> 
 					<input type="submit" name="searchTMDBbtn" title="search" value="Buscar">
 				</form>
@@ -26,7 +32,6 @@
 		<div class="seleccionar">
 			<label>Seleccionar</label> <select id="select1" name="select1"
 				size="10" tabindex="1"multiple>
-				<option value=""></option>
 				<c:forEach items="${requestScope.results}" var="x">
 					<option><c:out value="${x.title}" /></option>
 				</c:forEach>
@@ -35,13 +40,14 @@
 <!--RESULTADOS DE TMDB: SE MUESTRAN LOS SELECCIONADOS-->
 		<div class="seleccionados">
 			<label>Seleccionados</label>
-			<select id="select2" name="select2" size="3" tabindex="1" multiple>
+			<select id="select2" name="select2" size="5" tabindex="1" multiple>
 			<c:forEach items="${requestScope.before}" var="y">
 					<option value="${y}">${y}</option>
 				</c:forEach>
 			</select> 
 			<a href="#" id="remove">Quitar seleccion</a>
 			<form id="formSearchYoutube" action="/youtubesearchcontroller" method="post">
+			<input type="text" id="ids" name="ids" value="<c:forEach items="${requestScope.ids}" var="y">${y}#</c:forEach>">
 			<input type="text" id="array" name="array" value="">
 			<input type="submit" id="searchBtn" name="searchBtn" title="search" value="Buscar" onclick="">
 			</form>
@@ -64,8 +70,10 @@
 			$("#searchBtn").hide();
 			$("#mostrar").click(function(){
 				$("#array").val("");
+				$("#selected").val("");
 				$("#select2 option").each(function(){
 				$("#array").val($("#array").val()+$(this).attr('value')+'#');
+				$("#selected").val($("#selected").val()+$(this).attr('value')+'#');
 			  });
 				$("#searchBtn").show();
 				$("#mostrar").hide();

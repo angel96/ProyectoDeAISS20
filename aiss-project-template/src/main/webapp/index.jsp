@@ -18,6 +18,7 @@
 			<div id="search">
 				<form id="formSearch" action="tmdbsearchcontroller" method="post">
 					<input type="hidden" name="selected"/>
+					<input type="hidden" name="ids"/>
 					<input type="text" name="query" required /> <input type="submit"
 						name="searchBtn" title="search" value="search">
 				</form>

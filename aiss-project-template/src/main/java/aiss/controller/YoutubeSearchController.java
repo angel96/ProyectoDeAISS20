@@ -3,6 +3,7 @@ package aiss.controller;
 import java.io.IOException;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -34,8 +35,19 @@ public class YoutubeSearchController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String array = request.getParameter("array");
+		request.setAttribute("array", array);
 		String[] querySearch = request.getParameter("array").split("#");
-	
+		ArrayList<String> oldIds = new ArrayList<>();
+		if(!request.getParameter("ids").equals(null)) {
+			oldIds.addAll(Arrays.asList(request.getParameter("ids").split("#")));
+			oldIds.removeAll(Arrays.asList(null,""));
+		}
+		if(!oldIds.isEmpty()) {
+			request.setAttribute("ids", oldIds);
+		}
+
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("querySearch", querySearch);
 		RequestDispatcher rd = null; // manda a la vista
@@ -53,7 +65,7 @@ public class YoutubeSearchController extends HttpServlet {
 			if (t != null) {
 				Integer i;
 				List<String> a = new ArrayList<String>();
-				for (i = 0; i < yt.maxResults(); i++) {
+				for (i = 0; i < t.getItems().size(); i++) {
 					String id = t.getItems().get(i).getId().getVideoId();
 					a.add(id);
 				}
@@ -62,6 +74,7 @@ public class YoutubeSearchController extends HttpServlet {
 		}
 		rd = request.getRequestDispatcher("/YoutubeResults.jsp");
 		request.setAttribute("videos", ids);
+		
 		
 		rd.forward(request, response);
 	}
