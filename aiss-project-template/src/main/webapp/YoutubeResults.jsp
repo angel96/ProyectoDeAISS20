@@ -11,22 +11,20 @@
 </head>
 <body>
 	<fieldset id="Youtube">
-		
 			<iframe id="previo" src="https://www.youtube.com/embed/${x}/>" 
 			frameborder="0" allowfullscreen></iframe>
 			<button id="add" onclick="add()"> Añadir a seleccionados</button>
 		
 			<div class="seleccionar"> 
 			<c:forEach items="${requestScope.videos}" var="x">
-					<img id="img" src="https://img.youtube.com/vi/${x}/0.jpg" width="260"  
+					<%-- <img id="img" src="https://img.youtube.com/vi/${x}/0.jpg" width="260"  
+					onclick="seleccionar('${x}')"> --%>
+					<img id="img" src="https://i.ytimg.com/vi/${x}/movieposter.jpg" width="260"  
 					onclick="seleccionar('${x}')">
 				</c:forEach>
-			
 		</div>
 	</fieldset>
-
 	<fieldset>
-		
 			<label>Seleccionados</label>
 			<table id="seleccionados">
 			<c:forEach items="${requestScope.ids}" var="y">
@@ -38,31 +36,31 @@
 			</tr>	
 			</c:forEach>
 			</table>
-			<button onclick="table()">Mostrar</button>
+	</fieldset>
 			
 			<!-- Volver a TMDBResults -->
 			<form id="return" action="/tmdbsearchcontroller" method="post">
 			<!--Búsqueda realizada desde TMDB-->
-			Búsqueda realizada desde TMDB
-			<input id="selected" name="selected" value="${requestScope.array}">
+			<input type="hidden" id="selected" name="selected" value="${requestScope.array}">
 			<!--Devuelve las ID de los videos seleccionados-->
-			Devuelve las ID de los videos seleccionados
-			<input id="ids" name="ids" value="<c:forEach items="${requestScope.ids}" var="y">${y}#</c:forEach>">
+			<input type="hidden" id="ids" name="ids" value="<c:forEach items="${requestScope.ids}" var="y">${y}#</c:forEach>">
 			<input type="submit" id="return" name="return" title="return" value="Volver" onclick="">
 			</form>
 			
 			<!--Enviar a Google Drive-->
+			
 			Enviar a Google Drive
-			<form id="formSearch" action="/GoogleDriveFileUpdate" method="post">
-			<input type="text" id="array" name="array" value="">
-			<input type="submit" id="searchBtn" name="searchBtn" title="search" value="Buscar" onclick="">
+			<form id="formSearch" action="/DriveFilePostController" method="post">
+			<input type="hidden" id="array" name="array" value="">
+			<input type="submit" id="searchBtn" name="searchBtn" title="search" value="Guardar" onclick="">
 			</form>
 
 		<script type="text/javascript">
 		
 		function seleccionar(id){
 			document.getElementById("previo").src = "https://www.youtube.com/embed/"+id+"/>";
-			document.getElementById("add").setAttribute('onclick',"add('"+id+"')");
+			document.getElementById("add").setAttribute('onclick',"act('"+id+"')");
+			
 		}
 		
 		function add(id){
@@ -80,8 +78,13 @@
 			table.rows[i].cells[3].style.display = "none";
 			
 		}
+		function act(id){
+			add(id)
+			table();
+		}
 		function remove(id){
 			document.getElementById("seleccionados").deleteRow(id);
+			table();
 		}
 		function table(){
 			var recorrer = document.getElementById("seleccionados");
@@ -98,6 +101,6 @@
 		
 		
 		</script>
-	</fieldset>
+
 </body>
 </html>

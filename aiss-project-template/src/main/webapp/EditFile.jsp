@@ -21,7 +21,7 @@
 								</c:if>
 								><br>
 			Content: <textarea name="content"><c:forEach
-					items="${sessionScope.querySearch}" var="x">
+					items="${requestScope.array}" var="x">
 					${x}
 			</c:forEach></textarea>
 			<br>

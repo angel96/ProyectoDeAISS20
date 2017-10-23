@@ -35,6 +35,14 @@
 		<url-pattern>/youtubesearchcontroller</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>DriveFilePostController</servlet-name>
+		<servlet-class>aiss.controller.DriveFilePostController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DriveFilePostController</servlet-name>
+		<url-pattern>/DriveFilePostController</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>GoogleDriveListingServlet</servlet-name>
 		<servlet-class>aiss.controller.DriveFileListController</servlet-class>
 	</servlet>

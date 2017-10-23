@@ -2,29 +2,32 @@
 package aiss.model.tmdbsearch;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Result implements Serializable
 {
 
-    private Integer voteCount;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer vote_count;
     private Integer id;
     private Boolean video;
-    private Integer voteAverage;
+    private Integer vote_average;
     private String title;
     private Double popularity;
-    private String posterPath;
-    private String originalLanguage;
-    private String originalTitle;
-    private List<Integer> genreIds = null;
-    private Object backdropPath;
+    private String poster_path;
+    private String original_language;
+    private String original_title;
+    private List<Integer> genre_ids = null;
+    private Object backdrop_path;
     private Boolean adult;
     private String overview;
-    private String releaseDate;
+    private String release_date;
    
 
     /**
@@ -36,45 +39,45 @@ public class Result implements Serializable
 
     /**
      * 
-     * @param genreIds
+     * @param vote_count
      * @param id
-     * @param title
-     * @param releaseDate
-     * @param overview
-     * @param posterPath
-     * @param originalTitle
-     * @param voteAverage
-     * @param originalLanguage
-     * @param adult
-     * @param backdropPath
-     * @param voteCount
      * @param video
+     * @param vote_average
+     * @param title
      * @param popularity
+     * @param poster_path
+     * @param original_language
+     * @param original_title
+     * @param genre_ids
+     * @param backdrop_path
+     * @param adult
+     * @param overview
+     * @param release_date
      */
-    public Result(Integer voteCount, Integer id, Boolean video, Integer voteAverage, String title, Double popularity, String posterPath, String originalLanguage, String originalTitle, List<Integer> genreIds, Object backdropPath, Boolean adult, String overview, String releaseDate) {
+    public Result(Integer vote_count, Integer id, Boolean video, Integer vote_average, String title, Double popularity, String poster_path, String original_language, String original_title, List<Integer> genre_ids, Object backdrop_path, Boolean adult, String overview, String release_date) {
         super();
-        this.voteCount = voteCount;
+        this.vote_count = vote_count;
         this.id = id;
         this.video = video;
-        this.voteAverage = voteAverage;
+        this.vote_average = vote_average;
         this.title = title;
         this.popularity = popularity;
-        this.posterPath = posterPath;
-        this.originalLanguage = originalLanguage;
-        this.originalTitle = originalTitle;
-        this.genreIds = genreIds;
-        this.backdropPath = backdropPath;
+        this.poster_path = poster_path;
+        this.original_language = original_language;
+        this.original_title = original_title;
+        this.genre_ids = genre_ids;
+        this.backdrop_path = backdrop_path;
         this.adult = adult;
         this.overview = overview;
-        this.releaseDate = releaseDate;
+        this.release_date = release_date;
     }
 
-    public Integer getVoteCount() {
-        return voteCount;
+    public Integer getVote_count() {
+        return vote_count;
     }
 
-    public void setVoteCount(Integer voteCount) {
-        this.voteCount = voteCount;
+    public void setVote_count(Integer vote_count) {
+        this.vote_count = vote_count;
     }
 
     public Integer getId() {
@@ -93,12 +96,12 @@ public class Result implements Serializable
         this.video = video;
     }
 
-    public Integer getVoteAverage() {
-        return voteAverage;
+    public Integer getVote_average() {
+        return vote_average;
     }
 
-    public void setVoteAverage(Integer voteAverage) {
-        this.voteAverage = voteAverage;
+    public void setVote_average(Integer vote_average) {
+        this.vote_average = vote_average;
     }
 
     public String getTitle() {
@@ -117,44 +120,44 @@ public class Result implements Serializable
         this.popularity = popularity;
     }
 
-    public String getPosterPath() {
-        return posterPath;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
     }
 
-    public String getOriginalLanguage() {
-        return originalLanguage;
+    public String getOriginal_language() {
+        return original_language;
     }
 
-    public void setOriginalLanguage(String originalLanguage) {
-        this.originalLanguage = originalLanguage;
+    public void setOriginal_language(String original_language) {
+        this.original_language = original_language;
     }
 
-    public String getOriginalTitle() {
-        return originalTitle;
+    public String getOriginal_title() {
+        return original_title;
     }
 
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
+    public void setOriginal_title(String original_title) {
+        this.original_title = original_title;
     }
 
-    public List<Integer> getGenreIds() {
-        return genreIds;
+    public List<Integer> getGenre_ids() {
+        return genre_ids;
     }
 
-    public void setGenreIds(List<Integer> genreIds) {
-        this.genreIds = genreIds;
+    public void setGenre_ids(List<Integer> genre_ids) {
+        this.genre_ids = genre_ids;
     }
 
-    public Object getBackdropPath() {
-        return backdropPath;
+    public Object getBackdrop_path() {
+        return backdrop_path;
     }
 
-    public void setBackdropPath(Object backdropPath) {
-        this.backdropPath = backdropPath;
+    public void setBackdrop_path(Object backdrop_path) {
+        this.backdrop_path = backdrop_path;
     }
 
     public Boolean getAdult() {
@@ -173,12 +176,12 @@ public class Result implements Serializable
         this.overview = overview;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 
 }

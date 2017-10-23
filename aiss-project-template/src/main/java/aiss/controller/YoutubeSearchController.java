@@ -1,19 +1,15 @@
 package aiss.controller;
 
 import java.io.IOException;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import aiss.model.resources.YoutubeResource;
 import aiss.model.youtube.Youtube;
@@ -23,7 +19,7 @@ import aiss.model.youtube.Youtube;
  */
 public class YoutubeSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(YoutubeSearchController.class.getName());
+//	private static final Logger log = Logger.getLogger(YoutubeSearchController.class.getName());
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -35,9 +31,13 @@ public class YoutubeSearchController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		//request -> array (YoutubeResources), ids(ids de las películas)
+		//response -> array(String con las películas), videos(YoutubeResource), ids
 		String array = request.getParameter("array");
 		request.setAttribute("array", array);
-		String[] querySearch = request.getParameter("array").split("#");
+		ArrayList<String> querySearch = new ArrayList<>();
+		querySearch.addAll(Arrays.asList(request.getParameter("array").split("#")));
 		ArrayList<String> oldIds = new ArrayList<>();
 		if(!request.getParameter("ids").equals(null)) {
 			oldIds.addAll(Arrays.asList(request.getParameter("ids").split("#")));
@@ -47,18 +47,16 @@ public class YoutubeSearchController extends HttpServlet {
 			request.setAttribute("ids", oldIds);
 		}
 
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("querySearch", querySearch);
 		RequestDispatcher rd = null; // manda a la vista
 		YoutubeResource yt = new YoutubeResource(); // conseguir objeto youtube
 		List<Youtube> ls = new ArrayList<Youtube>();
 		List<String> ids = new ArrayList<String>();
 
+		if (querySearch.contains(null)) {
+			querySearch.removeAll(null);
+		}	
 		for(String s: querySearch){
-			if (s != null || s != "" || s != " " || s != ".") {
 				ls.add(yt.getIdFromQuery(s));
-			}
 		}
 		
 		for(Youtube t: ls){
