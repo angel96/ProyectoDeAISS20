@@ -35,9 +35,6 @@ public class TMDBSearchController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String querySearch = request.getParameter("query");
-		ArrayList<String> before = new ArrayList<>();
-		ArrayList<String> ids = new ArrayList<>();
-
 		RequestDispatcher rd = null;
 		log.log(Level.FINE, "Searching for TMDB albums of " + querySearch);
 		TMDBResource tmdb = new TMDBResource();
@@ -45,8 +42,7 @@ public class TMDBSearchController extends HttpServlet {
 		if (querySearch != null) {
 			searchtmdb = tmdb.getMoviesInfo(querySearch);
 			request.setAttribute("results", searchtmdb.getResults());
-			request.setAttribute("before",before);
-			request.setAttribute("ids",ids);
+
 			rd = request.getRequestDispatcher("/TMDBResults.jsp");
 			
 		} else {

@@ -4,8 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
-  <!-- <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>-->
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
+ <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Busqueda Youtube</title>
 </head>
@@ -17,10 +19,11 @@
 		
 			<div class="seleccionar"> 
 			<c:forEach items="${requestScope.videos}" var="x">
-					<%-- <img id="img" src="https://img.youtube.com/vi/${x}/0.jpg" width="260"  
-					onclick="seleccionar('${x}')"> --%>
-					<img id="img" src="https://i.ytimg.com/vi/${x}/movieposter.jpg" width="260"  
-					onclick="seleccionar('${x}')">
+					<img class="img" src="https://i.ytimg.com/vi/${x.id.videoId}/movieposter.jpg" width="260"  
+					onclick="seleccionar('${x.id.videoId}')">
+					<%-- <a>${x.snippet.title}</a>
+					<a>ADD</a> --%>
+
 				</c:forEach>
 		</div>
 	</fieldset>

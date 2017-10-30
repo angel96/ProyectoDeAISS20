@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.resources.YoutubeResource;
+import aiss.model.youtube.Item;
 import aiss.model.youtube.Youtube;
 
 /**
@@ -32,29 +33,17 @@ public class YoutubeSearchController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		//request -> array (YoutubeResources), ids(ids de las películas)
-		//response -> array(String con las películas), videos(YoutubeResource), ids
-		String array = request.getParameter("array");
-		request.setAttribute("array", array);
-		ArrayList<String> querySearch = new ArrayList<>();
-		querySearch.addAll(Arrays.asList(request.getParameter("array").split("#")));
-		ArrayList<String> oldIds = new ArrayList<>();
-		if(!request.getParameter("ids").equals(null)) {
-			oldIds.addAll(Arrays.asList(request.getParameter("ids").split("#")));
-			oldIds.removeAll(Arrays.asList(null,""));
-		}
-		if(!oldIds.isEmpty()) {
-			request.setAttribute("ids", oldIds);
-		}
-
 		RequestDispatcher rd = null; // manda a la vista
 		YoutubeResource yt = new YoutubeResource(); // conseguir objeto youtube
 		List<Youtube> ls = new ArrayList<Youtube>();
-		List<String> ids = new ArrayList<String>();
+		//List<String> ids = new ArrayList<String>();
+		List<Item> ids = new ArrayList<Item>();
+		
+		ArrayList<String> querySearch = new ArrayList<>();
+		querySearch.addAll(Arrays.asList(request.getParameter("array").split("#")));
+		querySearch.removeAll(Arrays.asList("",null));
 
-		if (querySearch.contains(null)) {
-			querySearch.removeAll(null);
-		}	
+		
 		for(String s: querySearch){
 				ls.add(yt.getIdFromQuery(s));
 		}
@@ -62,12 +51,16 @@ public class YoutubeSearchController extends HttpServlet {
 		for(Youtube t: ls){
 			if (t != null) {
 				Integer i;
-				List<String> a = new ArrayList<String>();
+				//List<String> a = new ArrayList<String>();
+				List<Item> a = new ArrayList<Item>();
+
 				for (i = 0; i < t.getItems().size(); i++) {
-					String id = t.getItems().get(i).getId().getVideoId();
+					//String id = t.getItems().get(i).getId().getVideoId();
+					Item id = t.getItems().get(i);
 					a.add(id);
 				}
 				ids.addAll(a);
+				
 			}
 		}
 		rd = request.getRequestDispatcher("/YoutubeResults.jsp");
