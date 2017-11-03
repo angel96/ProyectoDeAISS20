@@ -33,7 +33,6 @@ public class TMDBSearchController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String querySearch = request.getParameter("query");
 		RequestDispatcher rd = null;
 		log.log(Level.FINE, "Searching for TMDB albums of " + querySearch);
@@ -44,14 +43,13 @@ public class TMDBSearchController extends HttpServlet {
 			request.setAttribute("results", searchtmdb.getResults());
 
 			rd = request.getRequestDispatcher("/TMDBResults.jsp");
-			
+
 		} else {
 			log.log(Level.SEVERE, "TMDB object: " + searchtmdb);
 			rd = request.getRequestDispatcher("/error.jsp");
 		}
 		rd.forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
