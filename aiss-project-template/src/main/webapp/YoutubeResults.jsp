@@ -58,15 +58,26 @@
 
 	<script type="text/javascript">
 		var selected = [];
+		var count;
 		function select(id) {
 			document.getElementById("iframe").src = "https://www.youtube.com/embed/"
 					+ id + "/>";
 			document.getElementById("iframe").style.display = "block";
 			document.getElementById("add").style.display = "block";
-			document.getElementClassName("save")[0].setAttribute('onclick',
+			document.getElementById("add").setAttribute('onclick',
 					"add('" + id + "')");
-			document.getElementClassName("save")[0].setAttribute('id', "add-"
-					+ id);
+			
+			count = 0;
+			for (i = 0; i < selected.length; i++) {
+				if (selected[i] == id) {
+					count++;
+				}
+			}
+			if (count > 0) {
+				document.getElementById("add").firstChild.data = "GUARDADO";
+			} else {
+				document.getElementById("add").firstChild.data = "GUARDAR";
+			}
 
 		}
 		window.onload = function(){
@@ -74,7 +85,7 @@
 				selected = selected.concat(sessionStorage.getItem("selected").split("#"));
 				
 				var cleanSelected = new Array();
-				for(i=0;i<10;i++){
+				for(i=0;i<selected.length;i++){
 					if(selected[i]){
 						cleanSelected.push(selected[i]);
 					}
@@ -86,47 +97,38 @@
 			}else{
 				alert("Sin almacenamiento local");
 			}
-			
-		/* 	var c = document.getElementsByClassName("row");
-			for(i=0;i<c.length;i++){
-				var a = (c[i].id.substring(4)); 
-				if(ids.indexOf(a)>-1){
-					document.getElementById("button-"+a).firstChild.data = "AÑADIDO";	
-				}else{
-					document.getElementById("button-"+a).firstChild.data = "AÑADIR";	
-				}
-			} */
 		}
 
 		function add(id) {
 
 			var count = 0;
 			for (i = 0; i < selected.length; i++) {
-				if (selected[i] == a) {
+				if (selected[i] == id) {
 					count++;
 				}
 			}
 			if (count > 0) {
 				for (i = 0; i < selected.length; i++) {
-					if (selected[i] == a) {
-						document.getElementById("add-" + id).firstChild.data = "GUARDAR";
+					if (selected[i] == id) {
+						document.getElementById("add").firstChild.data = "GUARDAR";
 						selected.splice(i, 1);
 					}
 				}
-				storage();
+				
 
 			} else {
 
-				document.getElementById("add-" + id).firstChild.data = "GUARDADO";
+				document.getElementById("add").firstChild.data = "GUARDADO";
 				selected.push(id);
-
-				storage();
 			}
+			
+			storage();
 		}
 
 		function storage() {
 			if (typeof (Storage) !== "undefined") {
 				sessionStorage.setItem("selected", selected.join("#"));
+				document.getElementById("array").value = selected.join("#");
 
 			} else {
 				alert("Sin almacenamiento local");
