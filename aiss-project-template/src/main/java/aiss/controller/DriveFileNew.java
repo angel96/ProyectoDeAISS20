@@ -18,7 +18,8 @@ public class DriveFileNew extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String accessToken = (String) req.getSession().getAttribute("GoogleDrive-token");
 		String title = req.getParameter("title");
-		String content = req.getParameter("content");
+		log.log(Level.ALL, "Obteniendo array de seleccionados de youtube" + req.getParameter("selected"));
+		String content = (String)req.getAttribute("content");
 		if(accessToken!=null && !"".equals(accessToken)){
 			if(title!=null && !"".equals(title)){
 				GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);

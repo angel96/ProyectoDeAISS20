@@ -66,7 +66,6 @@ public class YoutubeSearchController extends HttpServlet {
 		rd = request.getRequestDispatcher("/YoutubeResults.jsp");
 		request.setAttribute("videos", ids);
 		
-		
 		rd.forward(request, response);
 	}
 

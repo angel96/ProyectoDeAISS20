@@ -35,6 +35,7 @@
 		<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 
 		<c:forEach items="${requestScope.videos}" var="x">
+			
 			<img class="images" id="${x.id.videoId}"
 				src="https://i.ytimg.com/vi/${x.id.videoId}/movieposter.jpg"
 				width="260" onclick="select('${x.id.videoId}')">
