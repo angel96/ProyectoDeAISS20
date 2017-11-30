@@ -125,10 +125,10 @@
 				var c1 = row.insertCell(1);
 				var c2 = row.insertCell(2);
 				var c3 = row.insertCell(3);
-				c0.innerHTML = "A�adir ID";
-				c1.innerHTML = "A�adir T�tulo";
-				c2.innerHTML = "A�adir Enlace";
-				c3.innerHTML = "A�adir P�ster";
+				c0.innerHTML = "Añadir ID";
+				c1.innerHTML = "Añadir Título";
+				c2.innerHTML = "Añadir Enlace";
+				c3.innerHTML = "Añadir Póster";
 
 			}
 		</script>
