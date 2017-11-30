@@ -92,7 +92,7 @@
 					
 				}
 				selected = cleanSelected;
-				
+				storage();
 				
 			}else{
 				alert("Sin almacenamiento local");

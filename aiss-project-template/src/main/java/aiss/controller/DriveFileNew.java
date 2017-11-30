@@ -26,8 +26,9 @@ public class DriveFileNew extends HttpServlet {
 				file.setTitle(title+".txt");
 				file.setMimeType("text/plain");
 				gdResource.insertFile(file, content);
-				req.setAttribute("message", "File '"+title+"' added to your Drive!");
-				req.getRequestDispatcher("/GoogleDriveFileListing.jsp").forward(req,resp);
+				req.setAttribute("message", "El archivo '"+title+"' ha sido añadido a Google Drive.");
+				req.getRequestDispatcher("/googleDriveListing").forward(req,resp);
+
 			}
 		}else{
 			log.info("Trying to acces to google drive without an acces token, redirecting to OAuth servlet");

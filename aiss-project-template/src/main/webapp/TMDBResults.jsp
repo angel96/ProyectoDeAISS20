@@ -12,7 +12,7 @@
 <body style="background-color:#F4F4F4">
 
 
-	<nav id="navbar" style="border-bottom: 2px solid #F1401B;">
+	<nav id="navbar" style="border-bottom: 2px solid #bc0009;">
 	
 	<form id="youtubeSearch" action="/youtubesearchcontroller"
 			method="post">
