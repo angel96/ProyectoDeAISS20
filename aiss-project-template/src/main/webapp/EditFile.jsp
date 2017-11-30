@@ -30,7 +30,7 @@
 			<c:if test="${not empty file}">
 				<input type="hidden" name="id" value="${file.id}">
 			</c:if>
-			<b>Nombre del documento:</b> <input type="text" placeholder="Documento sin título" name="title"
+			<b>Nombre del documento:</b> <input type="text" placeholder="Documento sin tÃ­tulo" name="title"
 				required
 				<c:if test="${not empty file}">
 								disabled="true" 
@@ -45,9 +45,9 @@
 				<tr>
 					<thread>
 					<th>ID</th>
-					<th>Título</th>
-					<th>Enlace al vídeo</th>
-					<th>Póster de la película</th>
+					<th>TÃ­tulo</th>
+					<th>Enlace al vÃ­deo</th>
+					<th>PÃ³ster de la pelÃ­cula</th>
 					</thread>
 				</tr>
 				<c:forEach items="${requestScope.array}" var="x">
@@ -65,7 +65,7 @@
 				GOOGLE DRIVE</button>
 		</form>
 		
-		<button onclick="addRow()">AÑADIR FILA</button>
+		<button onclick="addRow()">Aï¿½ADIR FILA</button>
 
 		<script>
 			function tableToText() {
@@ -125,10 +125,10 @@
 				var c1 = row.insertCell(1);
 				var c2 = row.insertCell(2);
 				var c3 = row.insertCell(3);
-				c0.innerHTML = "Añadir ID";
-				c1.innerHTML = "Añadir Título";
-				c2.innerHTML = "Añadir Enlace";
-				c3.innerHTML = "Añadir Póster";
+				c0.innerHTML = "Aï¿½adir ID";
+				c1.innerHTML = "Aï¿½adir Tï¿½tulo";
+				c2.innerHTML = "Aï¿½adir Enlace";
+				c3.innerHTML = "Aï¿½adir Pï¿½ster";
 
 			}
 		</script>
@@ -139,5 +139,4 @@
 
 
 </body>
-
 </html>
