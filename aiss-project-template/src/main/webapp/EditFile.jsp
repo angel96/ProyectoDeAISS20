@@ -1,4 +1,7 @@
-<%@include file="includes/header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
 	String controller = "GoogleDriveFileNew";
 %>
@@ -10,19 +13,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body style="background-color: #000; color: #5a5a5a">
-<nav id="navbar" style="border-bottom: 2px solid #bc0009">
+	<nav id="navbar" style="border-bottom: 2px solid #bc0009">
 
-		<button type="button" id="return"
-			onClick="javascript:window.location.href='index.jsp'" class="button">CANCELAR</button>
+	<button type="button" id="return"
+		onClick="javascript:window.location.href='index.jsp'" class="button">CANCELAR</button>
 	</nav>
-	<div class="container" style="margin-top: 80px; background-color: #fff; color: #000; padding:50px">
+	<div class="container"
+		style="margin-top: 80px; background-color: #fff; color: #000; padding: 50px">
 
 		<p class="message">${message}</p>
 
@@ -30,14 +35,14 @@
 			<c:if test="${not empty file}">
 				<input type="hidden" name="id" value="${file.id}">
 			</c:if>
-			<b>Nombre del documento:</b> <input type="text" placeholder="Documento sin título" name="title"
-				required
+			<b>Nombre del documento:</b> <input type="text"
+				placeholder="Documento sin título" name="title" required
 				<c:if test="${not empty file}">
 								disabled="true" 
 								value="${file.title}"
 								</c:if>>
-			<input type="hidden" id="textcontent" name="content"> 
-			<br><br>
+			<input type="hidden" id="textcontent" name="content"> <br>
+			<br>
 			<p>Seleccione el campo de la tabla que quiere modificar. Para
 				insertar nuevas filas en la tabla seleccione (+).</p>
 			<br>
@@ -59,13 +64,13 @@
 					</tr>
 				</c:forEach>
 			</table>
-			
+
 			<input type="hidden" id="texto" value="${content}">
 			<button class="button" onclick="tableToText()">GUARDAR EN
 				GOOGLE DRIVE</button>
 		</form>
-		
-		<button onclick="addRow()">A�ADIR FILA</button>
+
+		<button onclick="addRow()">AÑADIR FILA</button>
 
 		<script>
 			function tableToText() {
@@ -96,7 +101,7 @@
 
 				var a = new Array();
 				for (i = 0; i < info.length; i++) {
-					if (info[i] && info[i]!=="\n") {
+					if (info[i] && info[i] !== "\n") {
 						a.push(info[i]);
 					}
 

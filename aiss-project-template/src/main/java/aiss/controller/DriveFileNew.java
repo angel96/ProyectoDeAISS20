@@ -1,7 +1,6 @@
 package aiss.controller;
 
 import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -18,8 +17,7 @@ public class DriveFileNew extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String accessToken = (String) req.getSession().getAttribute("GoogleDrive-token");
 		String title = req.getParameter("title");
-		log.log(Level.ALL, "Obteniendo array de seleccionados de youtube" + req.getParameter("selected"));
-		String content = (String)req.getAttribute("content");
+		String content = req.getParameter("content");
 		if(accessToken!=null && !"".equals(accessToken)){
 			if(title!=null && !"".equals(title)){
 				GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
