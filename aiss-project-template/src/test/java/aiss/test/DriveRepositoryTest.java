@@ -40,19 +40,20 @@ public class DriveRepositoryTest {
 		item.setTitle(title + ".txt");
 		item.setMimeType("text/plain");
 		String content = "probando junit4";
-		id = rep.newFiles(item, content);
+		id = rep.newFiles(title, content);
 		assertNotNull(id);
 	}
 
 	@Test
 	public void test03UpdateFile() {
-		boolean var = rep.updateFile(); 
+		String id = "1V0S2xAFxbjDqCKj3rwOxTl4t6mbMbJ51";
+		boolean var = rep.updateFile(id,"testing"); 
 		assertEquals(var, true);
 	}
 
 	@Test
 	public void test04DeleteFile() {
-		boolean var = rep.deleteFile();
-		assertEquals(var, true);
+		boolean var = rep.deleteFile(id);
+		assertEquals(var, false);
 	}
 }

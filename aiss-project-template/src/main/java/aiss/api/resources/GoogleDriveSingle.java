@@ -1,20 +1,26 @@
 package aiss.api.resources;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import org.jboss.resteasy.spi.BadRequestException;
+import org.jboss.resteasy.spi.NotFoundException;
 
 import aiss.model.google.drive.FileItem;
 import aiss.model.repository.DriveRepository;
@@ -27,6 +33,7 @@ public class GoogleDriveSingle {
 	 * 
 	 * @return
 	 */
+	private static final Logger log = Logger.getLogger(GoogleDriveSingle.class.getName());
 	private static GoogleDriveSingle _instance = null;
 	DriveRepository repository;
 
@@ -41,31 +48,64 @@ public class GoogleDriveSingle {
 		}
 		return _instance;
 	}
-	
-	@GET 
+
+	@GET
 	@Path("/all")
 	@Produces("application/json")
-	public Collection<FileItem> getAll(){
+	public Collection<FileItem> getAll() {
 		return repository.init().getItems();
 	}
+
+	// ESTE SI
+
 	@POST
-	@Path("/drivepost")
-	@Consumes("text/plain")
-	@Produces("application/json")
-	public Response addFile (@Context UriInfo uriInfo, FileItem file, String content){
-		if(file == null){
-			throw new BadRequestException("El fichero es nulo");
+	@Consumes("application/json")
+	@Produces("text/plain")
+	public Response addFile(@Context UriInfo uriInfo, @QueryParam("filename") String file, String content)
+	{
+		
+		if (file == null) {
+			return Response.status(400).entity("Fichero nulo!!!").build();
 		}
-		if(content == null || content == ""){
-			throw new BadRequestException("El contenido no puede ser nulo ni vacio");
+
+		if (content == null || content == "") {
+			return Response.status(400).entity("Contenido vacio!!!").build();
 		}
-		repository.newFiles(file, content);
-		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
-		URI uri = ub.build(file.getId());
-		ResponseBuilder resp = Response.created(uri);
-		resp.entity(file);			
-		return resp.build();
+		
+		String id = repository.newFiles(file, content);		
+		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "getAll");
+		URI uri = ub.build();
+		Response resp = Response.created(uri).entity(id).build();
+		
+		return resp;
 	}
 
-	
+	@PUT
+	@Path("/{id}")
+	public Response updateFile(@PathParam("id") String id) {
+		FileItem oldFile = repository.getFile(id);
+		String oldContent = repository.getFileContent(oldFile);
+		if (oldFile == null) {
+			throw new NotFoundException("El fichero que se ha intentado modificar no se ha encontrado");
+		} else {
+			if (oldContent != null) {
+				oldContent = "probando";
+				repository.updateFile(oldFile.getId(), oldContent);
+			}
+		}
+
+		return Response.noContent().build();
+	}
+
+	@DELETE
+	@Path("/{id}")
+	public Response removeFile(@PathParam("id") String id) {
+		FileItem fileremoved = repository.getFile(id);
+		if (fileremoved == null) {
+			throw new NotFoundException("El archivo con el id deseado no fue encontrada");
+		} else {
+			repository.deleteFile(id);
+		}
+		return Response.noContent().build();
+	}
 }
