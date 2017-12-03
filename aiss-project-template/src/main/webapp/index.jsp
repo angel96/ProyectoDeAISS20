@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-
+<link rel="icon" type="image/png" href="images/spotygo.png">
 <link href="https://fonts.googleapis.com/css?family=Atomic+Age"
 	rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -31,7 +31,7 @@
 			<td><a href="api/drive/all">GoogleDrive - API - Ficheros</a></td>
 		</tr>
 		<tr>
-			<td><a href="/developers">Desarrolladores</a></td>
+			<td><a href="/developers.jsp">Desarrolladores</a></td>
 
 			<td><a href="api/youtube/all">Youtube - API</a></td>
 
