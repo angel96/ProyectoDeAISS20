@@ -5,6 +5,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Atomic+Age"
 	rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 <title>SpotyGo</title>
 </head>
 
@@ -21,6 +22,24 @@
 			name="searchBtn" title="search" value="BUSCAR">
 	</form>
 
-	<jsp:include page="footer.jsp" />
+	<footer>
+	<table width="">
+		<tr>
+			<td><a href="/googleDriveListing">Listado de ficheros de
+					Google Drive</a></td>
+			<td><a href="api/tmdb/all">TMDB - API</a></td>
+			<td><a href="api/drive/all">GoogleDrive - API - Ficheros</a></td>
+		</tr>
+		<tr>
+			<td><a href="/developers">Desarrolladores</a></td>
+
+			<td><a href="api/youtube/all">Youtube - API</a></td>
+
+		</tr>
+
+
+	</table>
+
+	</footer>
 </body>
 </html>

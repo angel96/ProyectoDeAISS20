@@ -10,7 +10,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>Archivos - Google Drive</title>
 </head>
-<body style="background-color: #000; color: #5a5a5a">
+<body style="background-color: #FFF; color: #5a5a5a;">
 
 	<nav id="navbar" style="border-bottom: 2px solid #bc0009;">
 
@@ -21,13 +21,12 @@
 	<div class="container" style="margin-top: 50px">
 
 		<h3>Seleccione el archivo que desea editar</h3>
-		<p style="display:none" class="message">${message}</p>
+		<p style="display: none" class="message">${message}</p>
 		<script>
-		var a = document.getElementsByClassName("message")[0].innerText;
-		if( a !== ""){
-			alert(a)
-		}
-		
+			var a = document.getElementsByClassName("message")[0].innerText;
+			if (a !== "") {
+				alert(a)
+			}
 		</script>
 		</br>
 
@@ -52,10 +51,11 @@
 			</c:forEach>
 		</table>
 		<p>
-			<button onClick="javascript:window.location.href='EditFile.jsp'">Crear un nuevo archivo de texto plano</button>
+			<button onClick="javascript:window.location.href='EditFile.jsp'">Crear
+				un nuevo archivo de texto plano</button>
 	</div>
 
-	<%@include file="includes/footer.jsp"%></body>
+	</body>
 </html>
 
 
