@@ -4,6 +4,7 @@ http://www.w3.org/TR/html4/loose.dtd>
 <html>
 <head>
 <meta http-equiv=Content-Type content=text/html; charset=ISO-8859-1>
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css" href="/css/style2.css" />
 <title>Desarrolladores</title>
 
@@ -11,29 +12,45 @@ http://www.w3.org/TR/html4/loose.dtd>
 </head>
 <body>
 
-	</br>
-	</br>
-	<b><h1>Desarrolladores</h1></b>
-	<table style="margin: 0 auto;">
-		<div class="card">
-			<th><img src="images/photo_2017-04-25_01-05-25.jpg"
-				style="width: 100%">
+	<nav id="navbar" style="border-bottom: 2px solid #bc0009;">
 
-				<h4>
-					<b>Ángel Delgado Luna</b>
-				</h4>
-				<p>Estudiante de Ingeniería del Software - 3º Curso</p></th>
-			<th><img src="images/images.jpg" style="width: 100%">
-				<div id='card2' class="container">
-					<h4>
-						<b>Reyes Cabello Holgado</b>
-					</h4>
-					<p>Estudiante de Ingeniería del Software - 2º Curso</p></th>
-		</div>
+	<button type="button" id="return"
+		onClick="javascript:window.location.href='index.jsp'" class="button">VOLVER</button>
+	</nav>
+
+	<h1 style="text-align:center; margin-top:5%;">Desarrolladores</h1>
+	<table style="margin: 0 auto; margin-top: 5%; width: 50%; height: auto;">
+		<th>
+		<img src="images/photo_2017-04-25_01-05-25.jpg"
+			style="width: 80%; max-width: 300px; height: auto">
+			<h4>Ángel Delgado Luna</h4>
+			<p>Estudiante de Ingeniería del Software - 3º Curso</p>
+			</th>
+		<th>
+		<img src="images/red.png"
+			style="width: 80%; max-width: 300px; height: auto">
+			<h4>Reyes Cabello Holgado</h4>
+			<p>Estudiante de Ingeniería del Software</p></th>
 	</table>
-	</br>
-	<a href='/index.jsp'><img src="/images/casita.jpg" style="width: 5%"></a>
-	</p>
+	<footer>
+	<table>
+		<tr>
+			<td><a href="/googleDriveListing">Listado de ficheros de
+					Google Drive</a></td>
+			<td><a href="api/tmdb/all">TMDB - API</a></td>
+			<td><a href="api/drive/all">GoogleDrive - API - Ficheros</a></td>
+		</tr>
+		<tr>
+			<td><a href="/developers.jsp">Desarrolladores</a></td>
+
+			<td><a href="api/youtube/all">Youtube - API</a></td>
+
+		</tr>
+
+
+	</table>
+
+	</footer>
 
 </body>
 </html>

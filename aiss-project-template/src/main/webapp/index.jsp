@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<link rel="icon" type="image/png" href="images/spotygo.png">
 <link href="https://fonts.googleapis.com/css?family=Atomic+Age"
 	rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -23,7 +22,7 @@
 	</form>
 
 	<footer>
-	<table width="">
+	<table>
 		<tr>
 			<td><a href="/googleDriveListing">Listado de ficheros de
 					Google Drive</a></td>
