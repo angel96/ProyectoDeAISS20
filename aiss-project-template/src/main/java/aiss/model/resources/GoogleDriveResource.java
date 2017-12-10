@@ -26,7 +26,7 @@ public class GoogleDriveResource {
 	public GoogleDriveResource(String access_token) {
 		this.access_token = access_token;
 	}
-
+	
 	/**
 	 * 
 	 * @return Files

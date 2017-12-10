@@ -55,5 +55,4 @@ public class GenericAuthController extends AbstractAuthorizationCodeServlet {
 	protected String getUserId(HttpServletRequest req) throws ServletException, IOException {			
 		return UUID.randomUUID().toString();
 	}
-		
 }

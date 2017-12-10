@@ -1,7 +1,6 @@
 package aiss.api.resources;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.logging.Logger;
 
@@ -15,7 +14,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
@@ -33,7 +31,6 @@ public class GoogleDriveSingle {
 	 * 
 	 * @return
 	 */
-	private static final Logger log = Logger.getLogger(GoogleDriveSingle.class.getName());
 	private static GoogleDriveSingle _instance = null;
 	DriveRepository repository;
 
@@ -52,16 +49,16 @@ public class GoogleDriveSingle {
 	@GET
 	@Path("/all")
 	@Produces("application/json")
-	public Collection<FileItem> getAll() {
-		return repository.init().getItems();
+	public Collection<FileItem> getAll(@QueryParam("oauth") String oauth) {
+		return repository.init(oauth).getItems();
 	}
 
 	// ESTE SI
-
+	
 	@POST
 	@Consumes("application/json")
 	@Produces("text/plain")
-	public Response addFile(@Context UriInfo uriInfo, @QueryParam("filename") String file, String content)
+	public Response addFile(@Context UriInfo uriInfo, @QueryParam("filename") String file, String content, @QueryParam("oauth") String oauth)
 	{
 		
 		if (file == null) {
@@ -72,7 +69,7 @@ public class GoogleDriveSingle {
 			return Response.status(400).entity("Contenido vacio!!!").build();
 		}
 		
-		String id = repository.newFiles(file, content);		
+		String id = repository.newFiles(file, content, oauth);		
 		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "getAll");
 		URI uri = ub.build();
 		Response resp = Response.created(uri).entity(id).build();
@@ -82,15 +79,15 @@ public class GoogleDriveSingle {
 
 	@PUT
 	@Path("/{id}")
-	public Response updateFile(@PathParam("id") String id) {
-		FileItem oldFile = repository.getFile(id);
-		String oldContent = repository.getFileContent(oldFile);
+	public Response updateFile(@PathParam("id") String id, @QueryParam("oauth") String oauth) {
+		FileItem oldFile = repository.getFile(id, oauth);
+		String oldContent = repository.getFileContent(oldFile , oauth);
 		if (oldFile == null) {
 			throw new NotFoundException("El fichero que se ha intentado modificar no se ha encontrado");
 		} else {
 			if (oldContent != null) {
 				oldContent = "probando";
-				repository.updateFile(oldFile.getId(), oldContent);
+				repository.updateFile(oldFile.getId(), oldContent, oauth);
 			}
 		}
 
@@ -99,12 +96,12 @@ public class GoogleDriveSingle {
 
 	@DELETE
 	@Path("/{id}")
-	public Response removeFile(@PathParam("id") String id) {
-		FileItem fileremoved = repository.getFile(id);
+	public Response removeFile(@PathParam("id") String id, @QueryParam("oauth") String oauth) {
+		FileItem fileremoved = repository.getFile(id , oauth);
 		if (fileremoved == null) {
 			throw new NotFoundException("El archivo con el id deseado no fue encontrada");
 		} else {
-			repository.deleteFile(id);
+			repository.deleteFile(id , oauth);
 		}
 		return Response.noContent().build();
 	}

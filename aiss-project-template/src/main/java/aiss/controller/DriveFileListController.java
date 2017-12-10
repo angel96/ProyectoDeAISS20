@@ -13,9 +13,9 @@ import aiss.model.resources.GoogleDriveResource;
 
 public class DriveFileListController extends HttpServlet {
 	private static final Logger log = Logger.getLogger(DriveFileListController.class.getName());
-	static String accessToken = "";
+	public static String accessToken;
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		accessToken=(String)req.getSession().getAttribute("GoogleDrive-token");
+		accessToken = (String)req.getSession().getAttribute("GoogleDrive-token");
 		if(accessToken!=null && !"".equals(accessToken)){
 			GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
 			Files files=gdResource.getFiles();
@@ -34,8 +34,5 @@ public class DriveFileListController extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		doGet(req,resp);
-	}
-	public static String getOauthToken() {
-		return accessToken;
 	}
 }

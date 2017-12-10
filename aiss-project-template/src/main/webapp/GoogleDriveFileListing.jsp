@@ -31,6 +31,7 @@
 		</br>
 
 		<table id="files" class="table table-inverse">
+			<c:out value = '${sessionScope["GoogleDrive-token"]}'/>
 			<tr>
 				<th>Nombre</th>
 				<th>Tamaño</th>
