@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC -//W3C//DTD HTML 4.01 Transitional//EN
 http://www.w3.org/TR/html4/loose.dtd>
 <html>
@@ -18,39 +17,17 @@ http://www.w3.org/TR/html4/loose.dtd>
 		onClick="javascript:window.location.href='index.jsp'" class="button">VOLVER</button>
 	</nav>
 
-	<h1 style="text-align:center; margin-top:5%;">Desarrolladores</h1>
-	<table style="margin: 0 auto; margin-top: 5%; width: 50%; height: auto;">
-		<th>
-		<img src="images/photo_2017-04-25_01-05-25.jpg"
+	<h1 style="text-align: center; margin-top: 5%;">Desarrolladores</h1>
+	<table
+		style="margin: 0 auto; margin-top: 5%; width: 50%; height: auto;">
+		<th><img src="images/photo_2017-04-25_01-05-25.jpg"
 			style="width: 80%; max-width: 300px; height: auto">
 			<h4>Ángel Delgado Luna</h4>
-			<p>Estudiante de Ingeniería del Software - 3º Curso</p>
-			</th>
-		<th>
-		<img src="images/red.png"
+			<p>Estudiante de Ingeniería del Software - 3º Curso</p></th>
+		<th><img src="images/red.png"
 			style="width: 80%; max-width: 300px; height: auto">
 			<h4>Reyes Cabello Holgado</h4>
 			<p>Estudiante de Ingeniería del Software</p></th>
 	</table>
-	<footer>
-	<table>
-		<tr>
-			<td><a href="/googleDriveListing">Listado de ficheros de
-					Google Drive</a></td>
-			<td><a href="api/tmdb/all">TMDB - API</a></td>
-			<td><a href="api/drive/all">GoogleDrive - API - Ficheros</a></td>
-		</tr>
-		<tr>
-			<td><a href="/developers.jsp">Desarrolladores</a></td>
-
-			<td><a href="api/youtube/all">Youtube - API</a></td>
-
-		</tr>
-
-
-	</table>
-
-	</footer>
-
 </body>
 </html>

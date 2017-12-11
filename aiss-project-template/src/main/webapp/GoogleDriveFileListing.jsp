@@ -12,6 +12,12 @@
 </head>
 <body style="background-color: #FFF; color: #5a5a5a;">
 
+	<div id="onload">
+		<div class="loader"></div>
+		<h2 style="text-align: center">Cargando tus archivos de Google
+			Drive</h2>
+	</div>
+
 	<nav id="navbar" style="border-bottom: 2px solid #bc0009;">
 
 		<button type="button" id="return"
@@ -29,15 +35,19 @@
 			}
 		</script>
 		</br>
-		
+
+		<button onClick="javascript:window.location.href='EditFile.jsp'">Crear
+			un nuevo archivo de texto plano</button>
+
 		<form action="/googleDriveListing" method="post">
-		<input id="view" type="hidden" name="view" value="1">
-		<button onclick="document.getElementById('view').value ='0'">MOSTRAR TODO</button>
-		<button type="submit" >ARCHIVOS SPOTYGO</button>
+			<input id="view" type="hidden" name="view" value="1">
+			<button onclick="document.getElementById('view').value ='0'">MOSTRAR
+				TODO</button>
+			<button type="submit">ARCHIVOS SPOTYGO</button>
 		</form>
 
+
 		<table id="files" class="table table-inverse">
-			<c:out value = '${sessionScope["GoogleDrive-token"]}'/>
 			<tr>
 				<th>Nombre</th>
 				<th>Tamaño</th>
@@ -57,12 +67,33 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<p>
-			<button onClick="javascript:window.location.href='EditFile.jsp'">Crear
-				un nuevo archivo de texto plano</button>
+
 	</div>
 
-	</body>
+	<footer>
+		<table>
+			<tr>
+				<td><a href="/developers.jsp">Desarrolladores</a></td>
+				<td><a
+					href="api/drive/all?oauth=${sessionScope['GoogleDrive-token']}">GoogleDrive
+						- API - Ficheros</a></td>
+			</tr>
+			<tr>
+				<td><a href="api/tmdb/all">TMDB - API</a></td>
+				<td><a href="api/youtube/all">Youtube - API</a></td>
+			</tr>
+		</table>
+
+	</footer>
+
+	<script>
+		var on = sessionStorage.getItem("on");
+		if (on == 0) {
+			sessionStorage.setItem("on", 1);
+			window.location = "/googleDriveListing";
+		} else {
+			document.getElementById("onload").style.display = "none";
+		}
+	</script>
+</body>
 </html>
-
-

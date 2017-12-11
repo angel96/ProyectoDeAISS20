@@ -23,6 +23,17 @@ article {
 	height: 58px;
 }
 
+/*****Index******/
+.appTitle {
+	text-shadow: 10px 8px #9b9b9b, -10px 12px #ccc, -8px -12px #666, 12px
+		-5px #9b9b9b;
+	font-size: 200px;
+	font-family: 'Atomic Age', cursive;
+	color: #350c6d;
+	margin-top: 300px;
+	margin-bottom: 20px;
+}
+
 /******TMDB*******/
 #tmdbSearch input[type=text] {
 	background-color: white;
@@ -228,7 +239,7 @@ article {
 footer {
 	position: fixed;
 	bottom: 0;
-	left:0;
+	left: 0;
 	width: 100%;
 	background-color: #111;
 }
@@ -265,3 +276,33 @@ footer td {
 	padding: 10px;
 }
 
+/**loader**/
+.loader {
+	border: 35px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 35px solid #350c6d;
+	border-bottom: 35px solid #000;
+	border-left: 35px solid #666;
+	width: 240px;
+	height: 240px;
+	-webkit-animation: spin 2s linear infinite; /* Safari */
+	animation: spin 2s linear infinite;
+	margin: 0 auto;
+}
+
+#onload {
+	position: absolute;
+	width: 100%;
+	margin-top: 10%;
+	padding: 50px;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

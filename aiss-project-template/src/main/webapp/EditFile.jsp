@@ -44,7 +44,7 @@
 			<input type="hidden" id="textcontent" name="content"> <br>
 			<br>
 			<p>Seleccione el campo de la tabla que quiere modificar. Para
-				insertar nuevas filas en la tabla seleccione (+).</p>
+				insertar nuevas filas en la tabla seleccione "Añadir fila".</p>
 			<br>
 			<table class="table">
 				<tr>

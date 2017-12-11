@@ -25,11 +25,9 @@ public class DriveFileListController extends HttpServlet {
 			if (files != null) {
 				String view = req.getParameter("view");
 				if (view == null) {
-					view = "0";
+					view = "1";
 				}
 				Integer v = Integer.parseInt(view);
-				log.info(req.getParameterMap().toString());
-				log.info(view);
 				List<FileItem> filter = new ArrayList<>();
 				for (FileItem file : files.getItems()) {
 					String a = file.getOriginalFilename();
@@ -42,10 +40,8 @@ public class DriveFileListController extends HttpServlet {
 					}
 				}
 				if (v == 0) {
-					log.info(files.getItems().toString());
 					req.setAttribute("files", files.getItems());
 				} else {
-					log.info(filter.toString());
 					req.setAttribute("files", filter);
 				}
 
@@ -53,6 +49,7 @@ public class DriveFileListController extends HttpServlet {
 			}else{
 				log.info("The files returned are null... probably your token has experied. Redirecting to OAuth servlet.");
 				req.getRequestDispatcher("/AuthController/GoogleDrive").forward(req,resp);
+
 			}
 		}else{
 			log.info("Trying to acces to google drive without an acces token, redirecting to OAuth servlet");
@@ -64,3 +61,4 @@ public class DriveFileListController extends HttpServlet {
 		doGet(req,resp);
 	}
 }
+

@@ -42,7 +42,14 @@ public class DriveFileUpdate extends HttpServlet {
 			String content=req.getParameter("content");
 			if(accessToken!=null && !"".equals(accessToken)){
 				GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
+				FileItem newFile = gdResource.getFile(id);
+				String title = newFile.getTitle();
+				newFile.setTitle("SpotyGoFile");
+				gdResource.updateFile(newFile);
 				gdResource.updateFileContent(id, content);
+				newFile.setTitle(title);
+				gdResource.updateFile(newFile);
+				
 				req.getRequestDispatcher("/googleDriveListing").forward(req,resp);
 			}else{
 				log.info("Trying to acces to google drive without an acces token, redirecting to OAuth servlet");
