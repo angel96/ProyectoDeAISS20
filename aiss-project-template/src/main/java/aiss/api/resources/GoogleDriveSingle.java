@@ -1,8 +1,9 @@
 package aiss.api.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.logging.Logger;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -49,8 +50,14 @@ public class GoogleDriveSingle {
 	@GET
 	@Path("/all")
 	@Produces("application/json")
-	public Collection<FileItem> getAll(@QueryParam("oauth") String oauth) {
-		return repository.init(oauth).getItems();
+	public Collection<FileItem> getAll(@QueryParam("oauth") String oauth, @QueryParam("title") String title) {
+		List<FileItem> res = new ArrayList<>();
+		for(FileItem file : repository.init(oauth).getItems()) {
+			if(title==null || title.equals("") || title.equals(file.getTitle())) {
+				res.add(file);
+			}
+		}
+		return res;
 	}
 
 	// ESTE SI

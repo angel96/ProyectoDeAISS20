@@ -1,6 +1,8 @@
 package aiss.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import aiss.model.google.drive.FileItem;
 import aiss.model.google.drive.Files;
 import aiss.model.resources.GoogleDriveResource;
 
@@ -18,10 +21,35 @@ public class DriveFileListController extends HttpServlet {
 		accessToken = (String)req.getSession().getAttribute("GoogleDrive-token");
 		if(accessToken!=null && !"".equals(accessToken)){
 			GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
-			Files files=gdResource.getFiles();
-			if(files!=null){
-				req.setAttribute("files", files);
-				req.getRequestDispatcher("/GoogleDriveFileListing.jsp").forward(req,resp);
+			Files files = gdResource.getFiles();
+			if (files != null) {
+				String view = req.getParameter("view");
+				if (view == null) {
+					view = "0";
+				}
+				Integer v = Integer.parseInt(view);
+				log.info(req.getParameterMap().toString());
+				log.info(view);
+				List<FileItem> filter = new ArrayList<>();
+				for (FileItem file : files.getItems()) {
+					String a = file.getOriginalFilename();
+					if (a == null) {
+						a = "0";
+					}
+					String b = "SpotyGoFile";
+					if (a.compareTo(b) == 0) {
+						filter.add(file);
+					}
+				}
+				if (v == 0) {
+					log.info(files.getItems().toString());
+					req.setAttribute("files", files.getItems());
+				} else {
+					log.info(filter.toString());
+					req.setAttribute("files", filter);
+				}
+
+				req.getRequestDispatcher("/GoogleDriveFileListing.jsp").forward(req, resp);
 			}else{
 				log.info("The files returned are null... probably your token has experied. Redirecting to OAuth servlet.");
 				req.getRequestDispatcher("/AuthController/GoogleDrive").forward(req,resp);

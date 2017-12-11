@@ -22,9 +22,12 @@ public class DriveFileNew extends HttpServlet {
 			if(title!=null && !"".equals(title)){
 				GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
 				FileItem file = new FileItem();
-				file.setTitle(title+".txt");
+				file.setTitle("SpotyGoFile");
 				file.setMimeType("text/plain");
-				gdResource.insertFile(file, content);
+				String newId = gdResource.insertFile(file, content);
+				FileItem newFile = gdResource.getFile(newId);
+				newFile.setTitle(title+".txt");
+				gdResource.updateFile(newFile);
 				req.setAttribute("message", "El archivo '"+title+"' ha sido añadido a Google Drive.");
 				req.getRequestDispatcher("/googleDriveListing").forward(req,resp);
 

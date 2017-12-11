@@ -29,6 +29,12 @@
 			}
 		</script>
 		</br>
+		
+		<form action="/googleDriveListing" method="post">
+		<input id="view" type="hidden" name="view" value="1">
+		<button onclick="document.getElementById('view').value ='0'">MOSTRAR TODO</button>
+		<button type="submit" >ARCHIVOS SPOTYGO</button>
+		</form>
 
 		<table id="files" class="table table-inverse">
 			<c:out value = '${sessionScope["GoogleDrive-token"]}'/>
@@ -39,7 +45,7 @@
 				<th>Editar</th>
 				<th>Eliminar</th>
 			</tr>
-			<c:forEach items="${requestScope.files.items}" var="file">
+			<c:forEach items="${requestScope.files}" var="file">
 				<tr>
 					<td><c:out value="${file.title}" /></td>
 					<td><c:out value="${file.fileSize}" /></td>
