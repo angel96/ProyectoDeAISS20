@@ -12,7 +12,7 @@
 <body style="background-color:#F4F4F4">
 
 
-	<nav id="navbar" style="border-bottom: 2px solid #bc0009;">
+	<nav id="navbar" style="border-bottom: 2px solid #350c6d;">
 	
 	<form id="youtubeSearch" action="/youtubesearchcontroller"
 			method="post">
@@ -119,9 +119,11 @@
 		for(i=0;i<c.length;i++){
 			var a = (c[i].id.substring(4)); 
 			if(ids.indexOf(a)>-1){
-				document.getElementById("button-"+a).firstChild.data = "AÑADIDO";	
+				document.getElementById("button-"+a).firstChild.data = "AÑADIDO";
+				document.getElementById("button-"+a).style = "color: green";
 			}else{
-				document.getElementById("button-"+a).firstChild.data = "AÑADIR";	
+				document.getElementById("button-"+a).firstChild.data = "AÑADIR";
+				document.getElementById("button-"+a).style = "color: #F1401B";
 			}
 		}
 		movie_list();
@@ -140,6 +142,7 @@
 				for(i=0; i<ids.length; i++){
 					if(ids[i]==a){
 						document.getElementById("button-"+a).firstChild.data = "AÑADIR";
+						document.getElementById("button-"+a).style = "color: #F1401B";
 						ids.splice(i,1);
 						names.splice(i,1);	
 						poster.splice(i,1);	
@@ -152,6 +155,7 @@
 					alert("NO PUEDEN REALIZARSE MÁS DE 7 SELECCIONES");
 				}else{
 				document.getElementById("button-"+a).firstChild.data = "AÑADIDO";
+				document.getElementById("button-"+a).style = "color: green";
 				ids.push(a);
 				names.push(n);	
 				poster.push(p);	

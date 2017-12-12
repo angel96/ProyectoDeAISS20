@@ -23,8 +23,11 @@
 <body style="background-color: #000; color: #5a5a5a">
 	<nav id="navbar" style="border-bottom: 2px solid #bc0009">
 
-	<button type="button" id="return"
-		onClick="javascript:window.location.href='index.jsp'" class="button">CANCELAR</button>
+		<form id="return" action="/youtubesearchcontroller"
+			method="post">
+			<input type="hidden" id="array" name="array" value=""> 
+			<button id="return">VOLVER</button>
+		</form>
 	</nav>
 	<div class="container"
 		style="margin-top: 80px; background-color: #fff; color: #000; padding: 50px">
@@ -73,6 +76,9 @@
 		<button onclick="addRow()">AÑADIR FILA</button>
 
 		<script>
+		
+			document.getElementById("array").value = sessionStorage.getItem("names");
+			
 			function tableToText() {
 				var i, text;
 				text = "";

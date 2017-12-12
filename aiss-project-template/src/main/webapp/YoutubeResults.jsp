@@ -45,18 +45,6 @@
 
 	</div>
 
-	<label>Seleccionados</label>
-	<table id="seleccionados">
-		<c:forEach items="${requestScope.ids}" var="y">
-			<tr>
-				<td><img src='https://img.youtube.com/vi/${y}/0.jpg' width='50'></td>
-				<td>https://www.youtube.com/embed/${y}/</td>
-				<td><button onclick='remove(this)'>x</button></td>
-				<td style="display: none">${y}</td>
-			</tr>
-		</c:forEach>
-	</table>
-
 	<script type="text/javascript">
 		var selected = [];
 		var count;

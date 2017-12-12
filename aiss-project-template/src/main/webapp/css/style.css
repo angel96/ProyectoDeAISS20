@@ -9,6 +9,13 @@ img {
 	height: 280px;
 }
 
+
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+
 article {
 	padding: 10px;
 }
@@ -129,6 +136,7 @@ article {
 .movie {
 	width: 32%;
 	float: left;
+	min-width: 540px;
 }
 
 .box {

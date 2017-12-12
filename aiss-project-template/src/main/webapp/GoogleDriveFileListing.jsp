@@ -18,7 +18,18 @@
 			Drive</h2>
 	</div>
 
-	<nav id="navbar" style="border-bottom: 2px solid #bc0009;">
+	<script>
+		var on = sessionStorage.getItem("on");
+		if (on == 0) {
+			window.location = "/googleDriveListing";
+		} else {
+			document.getElementById("onload").style.display = "none";
+		}
+		sessionStorage.clear();
+		sessionStorage.setItem("on", 1);
+	</script>
+
+	<nav id="navbar" style="border-bottom: 2px solid #350c6d;">
 
 		<button type="button" id="return"
 			onClick="javascript:window.location.href='index.jsp'" class="button">VOLVER</button>
@@ -36,8 +47,6 @@
 		</script>
 		</br>
 
-		<button onClick="javascript:window.location.href='EditFile.jsp'">Crear
-			un nuevo archivo de texto plano</button>
 
 		<form action="/googleDriveListing" method="post">
 			<input id="view" type="hidden" name="view" value="1">
@@ -68,6 +77,9 @@
 			</c:forEach>
 		</table>
 
+		<button onClick="javascript:window.location.href='EditFile.jsp'">Crear
+			un nuevo archivo de texto plano</button>
+
 	</div>
 
 	<footer>
@@ -85,15 +97,5 @@
 		</table>
 
 	</footer>
-
-	<script>
-		var on = sessionStorage.getItem("on");
-		if (on == 0) {
-			sessionStorage.setItem("on", 1);
-			window.location = "/googleDriveListing";
-		} else {
-			document.getElementById("onload").style.display = "none";
-		}
-	</script>
 </body>
 </html>
